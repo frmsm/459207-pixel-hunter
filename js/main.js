@@ -17,7 +17,7 @@ const modalConfirm = document.getElementById(`modal-confirm`);
 
 const main = document.getElementById(`main`);
 
-const screens = [greeting, rules, intro, gameOne, gameTwo, gameThree, stats, modalError, modalConfirm];
+const screens = [intro, greeting, rules, gameOne, gameTwo, gameThree, stats, modalError, modalConfirm];
 
 const arrowBtns = document.querySelectorAll(`.arrows__btn`);
 
