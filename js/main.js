@@ -29,10 +29,14 @@ const selectScreen = (screen) => {
 let currentScreen = 0;
 selectScreen(screens[currentScreen]);
 
-const selectScreenNumber = (num) => {
-  num = num > screens.length - 1 ? 0 : num;
-  num = num < 0 ? screens.length - 1 : num;
-  currentScreen = num;
+const selectScreenNumber = (number) => {
+  if (number < 0) {
+    number = screens.length - 1;
+  }
+  if (number > screens.length - 1) {
+    number = 0;
+  }
+  currentScreen = number;
   selectScreen(screens[currentScreen]);
 };
 
