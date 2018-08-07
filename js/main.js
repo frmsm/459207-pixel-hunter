@@ -19,8 +19,6 @@ const main = document.getElementById(`main`);
 
 const screens = [intro, greeting, rules, gameOne, gameTwo, gameThree, stats, modalError, modalConfirm];
 
-const arrowBtns = document.querySelectorAll(`.arrows__btn`);
-
 const selectScreen = (screen) => {
   main.innerHTML = ``;
   main.appendChild(screen.content.cloneNode(true));
@@ -54,6 +52,27 @@ document.addEventListener(`keyup`, (e)=> {
   }
 });
 
+const arrowsElem = `
+  <div class="arrows__wrap">
+    <style>
+      .arrows__wrap {
+        position: absolute;
+        top: 95px;
+        left: 50%;
+        margin-left: -56px;
+      }
+      .arrows__btn {
+        background: none;
+        border: 2px solid black;
+        padding: 5px 20px;
+      }
+    </style>
+    <button class="arrows__btn"><-</button>
+    <button class="arrows__btn">-></button>
+  </div>`;
+
+document.body.insertAdjacentHTML(`beforeEnd`, arrowsElem);
+
+const arrowBtns = document.querySelectorAll(`.arrows__btn`);
 arrowBtns[0].addEventListener(`click`, ()=>selectScreenNumber(currentScreen - 1));
 arrowBtns[1].addEventListener(`click`, ()=>selectScreenNumber(currentScreen + 1));
-
