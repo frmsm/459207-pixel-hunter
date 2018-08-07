@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Vladimir Pronin](https://up.htmlacademy.ru/ecmascript/6/user/459207).
-* Наставник: `Неизвестно`.
+* Наставник: `Артём Черкасов`.
 
 ---
 
