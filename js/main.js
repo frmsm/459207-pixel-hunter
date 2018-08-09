@@ -73,6 +73,7 @@ const arrowsElem = `
 
 document.body.insertAdjacentHTML(`beforeEnd`, arrowsElem);
 
+
 const arrowBtns = document.querySelectorAll(`.arrows__btn`);
 arrowBtns[0].addEventListener(`click`, ()=>selectScreenNumber(currentScreen - 1));
 arrowBtns[1].addEventListener(`click`, ()=>selectScreenNumber(currentScreen + 1));
