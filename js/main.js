@@ -1,5 +1,6 @@
 'use strict';
 
+// Задание 1
 const KEY_CODE = {
   left: 37,
   right: 39
