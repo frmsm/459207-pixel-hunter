@@ -6,10 +6,11 @@ export const getElementFromTemplate = (text) => {
   return element.content;
 };
 
-export const selectScreen = (screen) => {
+export const selectScreen = (screen, cb) => {
   setTimeout(()=> {
     main.innerHTML = ``;
-    main.appendChild(screen);
+    main.appendChild(screen.cloneNode(true));
+    cb(main);
   }, 500);
 };
 

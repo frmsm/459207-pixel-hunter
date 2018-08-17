@@ -1,5 +1,6 @@
 import {getElementFromTemplate, selectScreen} from "./utils";
-import stats from "./stats";
+import stats, {statsEvents} from "./stats";
+import greeting, {greetingEvents} from "./greeting";
 
 const tmp = `<header class="header">
     <button class="back">
@@ -47,23 +48,31 @@ const tmp = `<header class="header">
 
 const gameThree = getElementFromTemplate(tmp);
 
-const gameContent = gameThree.querySelector(`.game__content`);
-const gameOptions = gameThree.querySelectorAll(`.game__option`);
+export const gameThreeEvents = (node) => {
+  const gameContent = node.querySelector(`.game__content`);
+  const gameOptions = node.querySelectorAll(`.game__option`);
 
-const clearSelected = () => {
-  gameOptions.forEach((option) => {
-    option.className = `game__option`;
+  const clearSelected = () => {
+    gameOptions.forEach((option) => {
+      option.className = `game__option`;
+    });
+  };
+
+  clearSelected();
+
+  gameContent.addEventListener(`click`, (e) => {
+    if (e.target.parentNode.className === `game__option`) {
+      clearSelected();
+      e.target.parentNode.classList.add(`game__option--selected`);
+      selectScreen(stats, statsEvents);
+    }
+  });
+
+  const goBackButton = node.querySelector(`.back`);
+  goBackButton.addEventListener(`click`, (e) => {
+    e.preventDefault();
+    selectScreen(greeting, greetingEvents);
   });
 };
-
-clearSelected();
-
-gameContent.addEventListener(`click`, (e)=>{
-  if (e.target.parentNode.className === `game__option`) {
-    clearSelected();
-    e.target.parentNode.classList.add(`game__option--selected`);
-    selectScreen(stats);
-  }
-});
 
 export default gameThree;

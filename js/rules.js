@@ -1,5 +1,6 @@
 import {getElementFromTemplate, selectScreen} from "./utils";
-import gameOne from "./game-1";
+import gameOne, {gameOneEvents} from "./game-1";
+import greeting, {greetingEvents} from "./greeting";
 
 const tmp = `<header class="header">
     <button class="back">
@@ -29,17 +30,26 @@ const tmp = `<header class="header">
     </form>
   </section>`;
 
-const rules = getElementFromTemplate(tmp);
-const inputName = rules.querySelector(`.rules__input`);
+let rules = getElementFromTemplate(tmp);
 
-const goButton = rules.querySelector(`.rules__button`);
-goButton.addEventListener(`click`, (e)=>{
-  e.preventDefault();
-  selectScreen(gameOne);
-});
+export const rulesEvents = (node) => {
+  const inputName = node.querySelector(`.rules__input`);
 
-inputName.addEventListener(`input`, (e)=>{
-  goButton.disabled = e.target.value.trim().length < 4;
-});
+  const goButton = node.querySelector(`.rules__button`);
+  goButton.addEventListener(`click`, (e)=>{
+    e.preventDefault();
+    selectScreen(gameOne, gameOneEvents);
+  });
+
+  const goBackButton = node.querySelector(`.back`);
+  goBackButton.addEventListener(`click`, (e) => {
+    e.preventDefault();
+    selectScreen(greeting, greetingEvents);
+  });
+
+  inputName.addEventListener(`input`, (e) => {
+    goButton.disabled = e.target.value.trim().length < 4;
+  });
+};
 
 export default rules;

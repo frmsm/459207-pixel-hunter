@@ -1,5 +1,5 @@
 import {getElementFromTemplate, selectScreen} from "./utils";
-import intro from "./intro";
+import greeting, {greetingEvents} from "./greeting";
 
 const tmp = `<header class="header">
     <button class="back">
@@ -115,10 +115,12 @@ const tmp = `<header class="header">
 
 const stats = getElementFromTemplate(tmp);
 
-const backButton = stats.querySelector(`.back`);
+export const statsEvents = (node) => {
+  const backButton = node.querySelector(`.back`);
 
-backButton.addEventListener(`click`, ()=>{
-  selectScreen(intro);
-});
+  backButton.addEventListener(`click`, () => {
+    selectScreen(greeting, greetingEvents);
+  });
+};
 
 export default stats;
