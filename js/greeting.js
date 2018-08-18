@@ -25,13 +25,11 @@ const tmp = `<section class="greeting central--blur">
 let greeting = getElementFromTemplate(tmp);
 
 export const showGreetings = () => {
-  selectScreen(greeting, greetingEvents);
+  selectScreen(greeting);
 };
 
-export const greetingEvents = (node) => {
-  node.querySelector(`.greeting__continue`).addEventListener(`click`, () => {
-    showRules();
-  });
-};
+greeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => {
+  showRules();
+});
 
 export default greeting;

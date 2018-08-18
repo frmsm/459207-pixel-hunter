@@ -51,23 +51,21 @@ const tmp = `<header class="header">
 const gameTwo = getElementFromTemplate(tmp);
 
 export const showGameTwo = () => {
-  selectScreen(gameTwo, gameTwoEvents);
+  selectScreen(gameTwo);
 };
 
-export const gameTwoEvents = (node) => {
-  const gameContent = node.querySelector(`.game__content`);
-  const questionOne = node.querySelectorAll(`[name='question1']`);
+const gameContent = gameTwo.querySelector(`.game__content`);
+const questionOne = gameTwo.querySelectorAll(`[name='question1']`);
 
-  gameContent.addEventListener(`click`, () => {
-    if (checkQuestion(questionOne)) {
-      showGameThree();
-    }
-  });
+gameContent.addEventListener(`click`, () => {
+  if (checkQuestion(questionOne)) {
+    showGameThree();
+  }
+});
 
-  const goBackButton = node.querySelector(`.back`);
-  goBackButton.addEventListener(`click`, (e) => {
-    e.preventDefault();
-    showGreetings();
-  });
-};
+const goBackButton = gameTwo.querySelector(`.back`);
+goBackButton.addEventListener(`click`, (e) => {
+  e.preventDefault();
+  showGreetings();
+});
 

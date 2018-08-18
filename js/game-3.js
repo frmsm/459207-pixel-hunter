@@ -25,7 +25,7 @@ const tmp = `<header class="header">
       <div class="game__option">
         <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
       </div>
-      <div class="game__option  game__option--selected">
+      <div class="game__option">
         <img src="http://placehold.it/304x455" alt="Option 2" width="304" height="455">
       </div>
       <div class="game__option">
@@ -46,35 +46,25 @@ const tmp = `<header class="header">
     </ul>
   </section>`;
 
+// Я удалил game__option--selected из вёрстки за ненадобностью
+
 const gameThree = getElementFromTemplate(tmp);
 
 export const showGameThree = () => {
-  selectScreen(gameThree, gameThreeEvents);
+  selectScreen(gameThree);
 };
 
-export const gameThreeEvents = (node) => {
-  const gameContent = node.querySelector(`.game__content`);
-  const gameOptions = node.querySelectorAll(`.game__option`);
+const gameContent = gameThree.querySelector(`.game__content`);
 
-  const clearSelected = () => {
-    gameOptions.forEach((option) => {
-      option.className = `game__option`;
-    });
-  };
+gameContent.addEventListener(`click`, (e) => {
+  if (e.target.closest(`.game__option`)) {
+    e.target.parentNode.classList.add(`game__option--selected`);
+    showStats();
+  }
+});
 
-  clearSelected();
-
-  gameContent.addEventListener(`click`, (e) => {
-    if (e.target.parentNode.className === `game__option`) {
-      clearSelected();
-      e.target.parentNode.classList.add(`game__option--selected`);
-      showStats();
-    }
-  });
-
-  const goBackButton = node.querySelector(`.back`);
-  goBackButton.addEventListener(`click`, (e) => {
-    e.preventDefault();
-    showGreetings();
-  });
-};
+const goBackButton = gameThree.querySelector(`.back`);
+goBackButton.addEventListener(`click`, (e) => {
+  e.preventDefault();
+  showGreetings();
+});

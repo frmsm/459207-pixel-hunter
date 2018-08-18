@@ -9,11 +9,9 @@ const tmp = `<section class="intro">
 let intro = getElementFromTemplate(tmp);
 
 export const showIntro = () => {
-  selectScreen(intro, introEvents);
+  selectScreen(intro);
 };
 
-export const introEvents = (node) => {
-  node.querySelector(`.intro__asterisk`).addEventListener(`click`, () => {
-    showGreetings();
-  });
-};
+intro.querySelector(`.intro__asterisk`).addEventListener(`click`, () => {
+  showGreetings();
+});

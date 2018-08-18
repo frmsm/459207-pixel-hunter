@@ -62,25 +62,23 @@ const tmp = `<header class="header">
 const gameOne = getElementFromTemplate(tmp);
 
 export const showGameOne = () => {
-  selectScreen(gameOne, gameOneEvents);
+  selectScreen(gameOne);
 };
 
-export const gameOneEvents = (node) => {
-  const gameContent = node.querySelector(`.game__content`);
+const gameContent = gameOne.querySelector(`.game__content`);
 
-  const questionOne = node.querySelectorAll(`[name=question1]`);
-  const questionTwo = node.querySelectorAll(`[name=question2]`);
+const questionOne = gameOne.querySelectorAll(`[name=question1]`);
+const questionTwo = gameOne.querySelectorAll(`[name=question2]`);
 
-  gameContent.addEventListener(`click`, () => {
-    if (checkQuestion(questionOne) && checkQuestion(questionTwo)) {
-      showGameTwo();
-    }
-  });
+gameContent.addEventListener(`click`, () => {
+  if (checkQuestion(questionOne) && checkQuestion(questionTwo)) {
+    showGameTwo();
+  }
+});
 
-  const goBackButton = node.querySelector(`.back`);
-  goBackButton.addEventListener(`click`, (e) => {
-    e.preventDefault();
-    showGreetings();
-  });
-};
+const goBackButton = gameOne.querySelector(`.back`);
+goBackButton.addEventListener(`click`, (e) => {
+  e.preventDefault();
+  showGreetings();
+});
 

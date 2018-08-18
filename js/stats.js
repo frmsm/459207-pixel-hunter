@@ -116,15 +116,13 @@ const tmp = `<header class="header">
 const stats = getElementFromTemplate(tmp);
 
 export const showStats = () => {
-  selectScreen(stats, statsEvents);
+  selectScreen(stats);
 };
 
-export const statsEvents = (node) => {
-  const backButton = node.querySelector(`.back`);
+const backButton = stats.querySelector(`.back`);
 
-  backButton.addEventListener(`click`, () => {
-    showGreetings();
-  });
-};
+backButton.addEventListener(`click`, () => {
+  showGreetings();
+});
 
 export default stats;

@@ -1,24 +1,18 @@
 import {main} from "./main";
 
 export const getElementFromTemplate = (text) => {
-  const element = document.createElement(`template`);
+  const element = document.createElement(`div`);
   element.innerHTML = text;
-  return element.content;
+  return element;
 };
 
-export const selectScreen = (screen, cb) => {
-  setTimeout(()=> {
-    main.innerHTML = ``;
-    main.appendChild(screen.cloneNode(true));
-    cb(main);
-  }, 500);
+export const selectScreen = (screen) => {
+  main.innerHTML = ``;
+  main.appendChild(screen);
 };
 
 export const checkQuestion = (question) => {
-  for (let i = 0; i < question.length; i++) {
-    if (question[i].type === `radio` && question[i].checked) {
-      return true;
-    }
-  }
-  return false;
+  return Array.from(question).some((q)=> {
+    return q.type === `radio` && q.checked;
+  });
 };

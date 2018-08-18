@@ -30,30 +30,29 @@ const tmp = `<header class="header">
     </form>
   </section>`;
 
+const MIN_NAME_LENGTH = 4;
+
 let rules = getElementFromTemplate(tmp);
 
 export const showRules = () => {
-  selectScreen(rules, rulesEvents);
+  selectScreen(rules);
 };
 
-export const rulesEvents = (node) => {
-  const inputName = node.querySelector(`.rules__input`);
+const inputName = rules.querySelector(`.rules__input`);
 
-  const goButton = node.querySelector(`.rules__button`);
-  goButton.addEventListener(`click`, (e)=>{
-    e.preventDefault();
-    showGameOne();
-  });
+const goButton = rules.querySelector(`.rules__button`);
+goButton.addEventListener(`click`, (e)=>{
+  e.preventDefault();
+  showGameOne();
+});
 
-  const goBackButton = node.querySelector(`.back`);
-  goBackButton.addEventListener(`click`, (e) => {
-    e.preventDefault();
-    showGreetings();
-  });
+const goBackButton = rules.querySelector(`.back`);
+goBackButton.addEventListener(`click`, (e) => {
+  e.preventDefault();
+  showGreetings();
+});
 
-  inputName.addEventListener(`input`, (e) => {
-    goButton.disabled = e.target.value.trim().length < 4;
-  });
-};
+inputName.addEventListener(`input`, (e) => {
+  goButton.disabled = e.target.value.trim().length < MIN_NAME_LENGTH;
+});
 
-export default rules;
