@@ -1,5 +1,5 @@
 import {getElementFromTemplate, selectScreen} from "./utils";
-import greeting, {greetingEvents} from "./greeting";
+import {showGreetings} from "./greeting";
 
 const tmp = `<section class="intro">
     <button class="intro__asterisk asterisk" type="button"><span class="visually-hidden">Продолжить</span>*</button>
@@ -8,10 +8,12 @@ const tmp = `<section class="intro">
 
 let intro = getElementFromTemplate(tmp);
 
-export const introEvents = (node) => {
-  node.querySelector(`.intro__asterisk`).addEventListener(`click`, () => {
-    selectScreen(greeting, greetingEvents);
-  });
+export const showIntro = () => {
+  selectScreen(intro, introEvents);
 };
 
-export default intro;
+export const introEvents = (node) => {
+  node.querySelector(`.intro__asterisk`).addEventListener(`click`, () => {
+    showGreetings();
+  });
+};

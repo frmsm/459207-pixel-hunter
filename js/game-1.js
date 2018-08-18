@@ -1,6 +1,6 @@
 import {getElementFromTemplate, checkQuestion, selectScreen} from "./utils";
-import gameTwo, {gameTwoEvents} from "./game-2";
-import greeting, {greetingEvents} from "./greeting";
+import {showGameTwo} from "./game-2";
+import {showGreetings} from "./greeting";
 
 const tmp = `<header class="header">
     <button class="back">
@@ -61,23 +61,26 @@ const tmp = `<header class="header">
 
 const gameOne = getElementFromTemplate(tmp);
 
+export const showGameOne = () => {
+  selectScreen(gameOne, gameOneEvents);
+};
+
 export const gameOneEvents = (node) => {
   const gameContent = node.querySelector(`.game__content`);
 
-  const questionOne = document.getElementsByName(`question1`);
-  const questionTwo = document.getElementsByName(`question2`);
+  const questionOne = node.querySelectorAll(`[name=question1]`);
+  const questionTwo = node.querySelectorAll(`[name=question2]`);
 
   gameContent.addEventListener(`click`, () => {
     if (checkQuestion(questionOne) && checkQuestion(questionTwo)) {
-      selectScreen(gameTwo, gameTwoEvents);
+      showGameTwo();
     }
   });
 
   const goBackButton = node.querySelector(`.back`);
   goBackButton.addEventListener(`click`, (e) => {
     e.preventDefault();
-    selectScreen(greeting, greetingEvents);
+    showGreetings();
   });
 };
 
-export default gameOne;

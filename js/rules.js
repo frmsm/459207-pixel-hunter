@@ -1,6 +1,6 @@
 import {getElementFromTemplate, selectScreen} from "./utils";
-import gameOne, {gameOneEvents} from "./game-1";
-import greeting, {greetingEvents} from "./greeting";
+import {showGameOne} from "./game-1";
+import {showGreetings} from "./greeting";
 
 const tmp = `<header class="header">
     <button class="back">
@@ -32,19 +32,23 @@ const tmp = `<header class="header">
 
 let rules = getElementFromTemplate(tmp);
 
+export const showRules = () => {
+  selectScreen(rules, rulesEvents);
+};
+
 export const rulesEvents = (node) => {
   const inputName = node.querySelector(`.rules__input`);
 
   const goButton = node.querySelector(`.rules__button`);
   goButton.addEventListener(`click`, (e)=>{
     e.preventDefault();
-    selectScreen(gameOne, gameOneEvents);
+    showGameOne();
   });
 
   const goBackButton = node.querySelector(`.back`);
   goBackButton.addEventListener(`click`, (e) => {
     e.preventDefault();
-    selectScreen(greeting, greetingEvents);
+    showGreetings();
   });
 
   inputName.addEventListener(`input`, (e) => {

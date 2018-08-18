@@ -1,5 +1,5 @@
 import {getElementFromTemplate, selectScreen} from "./utils";
-import rules, {rulesEvents} from "./rules";
+import {showRules} from "./rules";
 
 const tmp = `<section class="greeting central--blur">
     <img class="greeting__logo" src="img/logo_ph-big.svg" width="201" height="89" alt="Pixel Hunter">
@@ -24,9 +24,13 @@ const tmp = `<section class="greeting central--blur">
 
 let greeting = getElementFromTemplate(tmp);
 
+export const showGreetings = () => {
+  selectScreen(greeting, greetingEvents);
+};
+
 export const greetingEvents = (node) => {
   node.querySelector(`.greeting__continue`).addEventListener(`click`, () => {
-    selectScreen(rules, rulesEvents);
+    showRules();
   });
 };
 

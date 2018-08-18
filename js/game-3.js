@@ -1,6 +1,6 @@
 import {getElementFromTemplate, selectScreen} from "./utils";
-import stats, {statsEvents} from "./stats";
-import greeting, {greetingEvents} from "./greeting";
+import {showStats} from "./stats";
+import {showGreetings} from "./greeting";
 
 const tmp = `<header class="header">
     <button class="back">
@@ -48,6 +48,10 @@ const tmp = `<header class="header">
 
 const gameThree = getElementFromTemplate(tmp);
 
+export const showGameThree = () => {
+  selectScreen(gameThree, gameThreeEvents);
+};
+
 export const gameThreeEvents = (node) => {
   const gameContent = node.querySelector(`.game__content`);
   const gameOptions = node.querySelectorAll(`.game__option`);
@@ -64,15 +68,13 @@ export const gameThreeEvents = (node) => {
     if (e.target.parentNode.className === `game__option`) {
       clearSelected();
       e.target.parentNode.classList.add(`game__option--selected`);
-      selectScreen(stats, statsEvents);
+      showStats();
     }
   });
 
   const goBackButton = node.querySelector(`.back`);
   goBackButton.addEventListener(`click`, (e) => {
     e.preventDefault();
-    selectScreen(greeting, greetingEvents);
+    showGreetings();
   });
 };
-
-export default gameThree;

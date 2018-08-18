@@ -1,6 +1,5 @@
-import intro, {introEvents} from "./intro";
-import {selectScreen} from "./utils";
+import {showIntro} from "./intro";
 
 export const main = document.getElementById(`main`);
 
-selectScreen(intro, introEvents);
+showIntro();
