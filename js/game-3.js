@@ -58,7 +58,7 @@ const gameContent = gameThree.querySelector(`.game__content`);
 
 gameContent.addEventListener(`click`, (e) => {
   if (e.target.closest(`.game__option`)) {
-    e.target.parentNode.classList.add(`game__option--selected`);
+    e.target.closest(`.game__option`).classList.add(`game__option--selected`);
     showStats();
   }
 });
