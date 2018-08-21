@@ -12,7 +12,7 @@ export const selectScreen = (screen) => {
 };
 
 export const checkQuestion = (question) => {
-  return Array.from(question).some((q)=> {
+  return [...question].some((q)=> {
     return q.type === `radio` && q.checked;
   });
 };
