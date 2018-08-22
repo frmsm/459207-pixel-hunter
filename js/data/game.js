@@ -42,51 +42,31 @@ export const checkScores = (game, ans = [], lives) => {
   return Object.assign({}, game, {score});
 };
 
-export const checkLives = (game, lives) => {
-  if (typeof lives !== `number`) {
-    throw new Error(`Live should be number`);
+const check = (propType, maxLength, game, prop) => {
+  if (typeof prop !== `number`) {
+    throw new Error(`${propType} should be number`);
   }
 
-  if (lives < 0) {
-    throw new Error(`Lives should not be negative`);
+  if (prop < 0) {
+    throw new Error(`${propType} should not be negative`);
   }
 
-  if (lives > MAX_LIVES_COUNT) {
-    throw new Error(`Lives should not be greather then ${MAX_LIVES_COUNT}`);
+  if (prop > maxLength) {
+    throw new Error(`${propType} should not be greater then ${maxLength}`);
   }
 
-  return Object.assign({}, game, {lives});
+  switch (propType) {
+    case `Lives`:
+      return Object.assign({}, game, {lives: prop});
+    case `Time`:
+      return Object.assign({}, game, {time: prop});
+    case `Level`:
+      return Object.assign({}, game, {level: prop});
+    default:
+      return game;
+  }
 };
 
-
-export const checkTime = (game, time) => {
-  if (typeof time !== `number`) {
-    throw new Error(`Time should be number`);
-  }
-
-  if (time < 0) {
-    throw new Error(`Time should not be negative`);
-  }
-
-  if (time > MAX_TIME) {
-    throw new Error(`Time shoul not be greather then ${MAX_TIME}`);
-  }
-
-  return Object.assign({}, game, {time});
-};
-
-export const checkLevel = (game, level) => {
-  if (typeof level !== `number`) {
-    throw new Error(`Level should be number`);
-  }
-
-  if (level < 0) {
-    throw new Error(`Level should not be negative`);
-  }
-
-  if (level > MAX_LEVEL) {
-    throw new Error(`Level shoul not be greather then ${MAX_LEVEL}`);
-  }
-
-  return Object.assign({}, game, {level});
-};
+export const checkLives = check.bind(null, `Lives`, MAX_LIVES_COUNT);
+export const checkTime = check.bind(null, `Time`, MAX_TIME);
+export const checkLevel = check.bind(null, `Level`, MAX_LEVEL);
