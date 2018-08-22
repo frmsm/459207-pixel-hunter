@@ -1,10 +1,3 @@
-export const INITIAL_GAME = {
-  level: 0,
-  lives: 3,
-  score: 0,
-  time: 0,
-};
-
 const ANSWERS_COUNT = 10;
 const ANSWER_SCORE = 100;
 const FAST_ANSWER_SCORE = 50;
@@ -16,33 +9,29 @@ const MAX_LIVES_COUNT = 3;
 const MAX_TIME = 30;
 const MAX_LEVEL = 9;
 
-export const checkScores = (game, ans = [], lives) => {
-  if (ans.length < ANSWERS_COUNT) {
+export const checkScores = (answers = [], lives) => {
+  if (answers.length < ANSWERS_COUNT) {
     return -1;
   }
 
-  if (ans.length > ANSWERS_COUNT && lives === 3 && ans.every((a)=>{
-    return a.time > FAST_ANSWER_TIME && a.time < SLOW_ANSWER_SCORE;
-  })) {
-    return Object.assign({}, game, {score: 1150});
-  }
-
-  let score = ans.reduce((a, b) => {
-    if (b.answer === false) {
-      return a + 0;
+  const score = answers.reduce((sum, answer) => {
+    if (answer.answer === false) {
+      return sum;
     }
-    if (b.time < FAST_ANSWER_TIME) {
-      return a + ANSWER_SCORE + FAST_ANSWER_SCORE;
-    } else if (b.time > SLOW_ANSWER_TIME) {
-      return a + ANSWER_SCORE + SLOW_ANSWER_SCORE;
+    sum += ANSWER_SCORE;
+    if (answer.time < FAST_ANSWER_TIME) {
+      return sum + FAST_ANSWER_SCORE;
     }
-    return a + ANSWER_SCORE;
+    if (answer.time > SLOW_ANSWER_TIME) {
+      return sum + SLOW_ANSWER_SCORE;
+    }
+    return sum;
   }, 0) + REST_LIVE_SCORE * lives;
 
-  return Object.assign({}, game, {score});
+  return score;
 };
 
-const check = (propType, maxLength, game, prop) => {
+const isValid = (propType, maxLength, prop) => {
   if (typeof prop !== `number`) {
     throw new Error(`${propType} should be number`);
   }
@@ -55,18 +44,10 @@ const check = (propType, maxLength, game, prop) => {
     throw new Error(`${propType} should not be greater then ${maxLength}`);
   }
 
-  switch (propType) {
-    case `Lives`:
-      return Object.assign({}, game, {lives: prop});
-    case `Time`:
-      return Object.assign({}, game, {time: prop});
-    case `Level`:
-      return Object.assign({}, game, {level: prop});
-    default:
-      return game;
-  }
+  return true;
 };
 
-export const checkLives = check.bind(null, `Lives`, MAX_LIVES_COUNT);
-export const checkTime = check.bind(null, `Time`, MAX_TIME);
-export const checkLevel = check.bind(null, `Level`, MAX_LEVEL);
+export const isValidLives = isValid.bind(null, `Lives`, MAX_LIVES_COUNT);
+export const isValidTime = isValid.bind(null, `Time`, MAX_TIME);
+export const isValidLevel = isValid.bind(null, `Level`, MAX_LEVEL);
+
