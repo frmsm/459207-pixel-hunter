@@ -1,3 +1,30 @@
+export const INITIAL_STATE = Object.freeze({
+  level: 0,
+  lives: 3,
+  time: 30,
+  answers: [],
+});
+
+export const PIXEL_HUNTER = {
+  'level-1': {
+    photoPaint: true,
+    question: `Угадайте для каждого изображения фото или рисунок?`,
+    answers: [`http://placehold.it/468x458`, `http://placehold.it/468x458`],
+  },
+  'level-2': {
+    photoPaint: true,
+    question: `Угадай, фото или рисунок?`,
+    answers: [`http://placehold.it/705x455`]
+  },
+  'level-3': {
+    photoPaint: false,
+    question: `Найдите рисунок среди изображений`,
+    answers: [`http://placehold.it/304x455`, `http://placehold.it/304x455`, `http://placehold.it/304x455`]
+  }
+};
+
+// const RESUTS = [];
+
 const ANSWERS_COUNT = 10;
 const ANSWER_SCORE = 100;
 const FAST_ANSWER_SCORE = 50;
