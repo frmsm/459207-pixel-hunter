@@ -1,7 +1,8 @@
 import {getElementFromTemplate, selectScreen} from "./utils";
-import {showGameOne} from "./game-1";
+import {renderGameOne, showGameOne} from "./game-1";
 import {showGreetings} from "./greeting";
 import {backButton} from "./back-button";
+import {INITIAL_STATE, PIXEL_HUNTER} from "./data/game";
 
 const rulesElem = `<section class="rules">
     <h2 class="rules__title">Правила</h2>
@@ -38,7 +39,9 @@ const inputName = rules.querySelector(`.rules__input`);
 const goButton = rules.querySelector(`.rules__button`);
 goButton.addEventListener(`click`, (e)=>{
   e.preventDefault();
-  showGameOne();
+  //showGameOne(PIXEL_HUNTER[`level-1`]);
+  //selectScreen(INITIAL_STATE.level);
+  renderGameOne(INITIAL_STATE);
 });
 
 const goBackButton = rules.querySelector(`.back`);
