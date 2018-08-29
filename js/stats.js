@@ -76,9 +76,9 @@ export const showStats = (state) => {
   const stats = getElementFromTemplate(tmp(RESUTS, state.lives));
   selectScreen(stats);
 
-  const backBtn = stats.querySelector(`.back`);
+  const goBackButton = stats.querySelector(`.back`);
 
-  backBtn.addEventListener(`click`, () => {
+  goBackButton.addEventListener(`click`, () => {
     showGreetings();
   });
 };
