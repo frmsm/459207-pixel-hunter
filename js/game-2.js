@@ -42,6 +42,7 @@ export const renderGameTwo = (state) => {
   const goBackButton = gameTwo.querySelector(`.back`);
   goBackButton.addEventListener(`click`, (e) => {
     e.preventDefault();
+    clearInterval(timer);
     showGreetings();
   });
 
