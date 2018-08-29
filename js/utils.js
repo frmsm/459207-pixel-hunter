@@ -1,6 +1,4 @@
 import {main} from "./main";
-//import {setQuestionStyle} from "./game-render";
-import {PIXEL_HUNTER} from "./data/game";
 
 export const getElementFromTemplate = (text) => {
   const element = document.createElement(`div`);
@@ -12,11 +10,6 @@ export const selectScreen = (screen) => {
   main.innerHTML = ``;
   main.appendChild(screen);
 };
-
-// export const selectScreen = (state) => {
-//   main.innerHTML = ``;
-//   main.appendChild(setQuestionStyle(PIXEL_HUNTER[state.level]));
-// };
 
 export const checkQuestion = (question) => {
   let value = ``;

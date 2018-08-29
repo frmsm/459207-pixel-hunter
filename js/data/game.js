@@ -19,7 +19,7 @@ export const PIXEL_HUNTER = [
   {
     photoPaint: false,
     question: `Найдите рисунок среди изображений`,
-    answers: [{img: `http://placehold.it/304x455`, type: `photo`}, {img: `http://placehold.it/304x455`, type: `paint`}, {img: `http://placehold.it/304x455`, type: `photo`}],
+    answers: [{img: `http://placehold.it/304x455`, type: true}, {img: `http://placehold.it/304x455`, type: false}, {img: `http://placehold.it/304x455`, type: false}],
   },
   {
     photoPaint: true,
@@ -34,7 +34,7 @@ export const PIXEL_HUNTER = [
   {
     photoPaint: false,
     question: `Найдите рисунок среди изображений`,
-    answers: [{img: `http://placehold.it/304x455`, type: `photo`}, {img: `http://placehold.it/304x455`, type: `paint`}, {img: `http://placehold.it/304x455`, type: `photo`}],
+    answers: [{img: `http://placehold.it/304x455`, type: true}, {img: `http://placehold.it/304x455`, type: false}, {img: `http://placehold.it/304x455`, type: false}],
   },
   {
     photoPaint: true,
@@ -49,7 +49,7 @@ export const PIXEL_HUNTER = [
   {
     photoPaint: false,
     question: `Найдите рисунок среди изображений`,
-    answers: [{img: `http://placehold.it/304x455`, type: `photo`}, {img: `http://placehold.it/304x455`, type: `paint`}, {img: `http://placehold.it/304x455`, type: `photo`}],
+    answers: [{img: `http://placehold.it/304x455`, type: true}, {img: `http://placehold.it/304x455`, type: false}, {img: `http://placehold.it/304x455`, type: false}],
   },
   {
     photoPaint: true,
@@ -137,18 +137,4 @@ export const setLives = (live) => {
   return --live;
 };
 
-// export const setTime = (time) => {
-//   if (typeof time !== `number`) {
-//     throw new Error(`Level should be number`);
-//   }
-//
-//   if (lvl + 1 > MAX_LEVEL) {
-//     return 0;
-//   }
-//
-//   if (lvl + 1 < 0) {
-//     throw new Error(`Level should not be negative`);
-//   }
-//
-//   return lvl + 1;
-// }
+

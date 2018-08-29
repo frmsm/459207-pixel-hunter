@@ -1,7 +1,4 @@
-import {INITIAL_STATE} from "./data/game";
-
 export const curStats = (answers) => {
-  console.log(answers);
   return `<ul class="stats">
   ${answers.map((it) => {
     if (it === -1) {

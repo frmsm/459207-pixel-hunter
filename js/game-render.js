@@ -1,9 +1,7 @@
-import {curStats} from "./current-stats";
-import {INITIAL_STATE, PIXEL_HUNTER, setLevel, setLives} from "./data/game";
-import {gameTwo, renderGameTwo} from "./game-2";
-import {gameThree, renderGameThree} from "./game-3";
+import {PIXEL_HUNTER, setLevel} from "./data/game";
+import {renderGameTwo} from "./game-2";
+import {renderGameThree} from "./game-3";
 import {renderGameOne} from "./game-1";
-import {showGreetings} from "./greeting";
 import {showStats} from "./stats";
 
 export const setQuestionStyle = (state) => {
@@ -21,8 +19,11 @@ export const setQuestionStyle = (state) => {
   }
 };
 
+export const firstLevelRender = (state) => {
+  setQuestionStyle(state);
+};
+
 export const shouldLevelRender = (state, answer = -1, lives = state.lives) => {
-  console.log(lives);
   const newState = Object.assign({}, state,
       {level: setLevel(state.level),
         answers: [...state.answers, answer],

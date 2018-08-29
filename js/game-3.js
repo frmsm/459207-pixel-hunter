@@ -1,10 +1,11 @@
 import {getElementFromTemplate, selectScreen} from "./utils";
 import {showGreetings} from "./greeting";
 import {backButton} from "./back-button";
-import {gameHeader, startTimer} from "./game-header";
+import {gameHeader} from "./game-header";
 import {gameRender, shouldLevelRender} from "./game-render";
-import {INITIAL_STATE, PIXEL_HUNTER, setLives} from "./data/game";
+import {PIXEL_HUNTER, setLives} from "./data/game";
 import {curStats} from "./current-stats";
+import {createTimer} from "./timer";
 
 const tmp = (state) => `<header class="header">
     ${backButton}
@@ -26,11 +27,16 @@ export const renderGameThree = (state) => {
   const gameContent = gameThree.querySelector(`.game__content`);
 
   gameContent.addEventListener(`click`, (e) => {
-    //console.log(e.t)
-    if (e.target.closest(`.game__option`)) {
-      e.target.closest(`.game__option`).classList.add(`game__option--selected`);
-      shouldLevelRender(state, Number(gameTimer.innerHTML));
+    const gameOption = e.target.closest(`.game__option`);
+    if (gameOption) {
+      gameOption.classList.add(`game__option--selected`);
+      const imgIndex = gameOption.children[0].alt.substr(-1, 1) - 1;
       clearInterval(timer);
+      if (PIXEL_HUNTER[state.level].answers[imgIndex].type) {
+        shouldLevelRender(state, Number(gameTimer.innerHTML));
+      } else {
+        shouldLevelRender(state, -1, setLives(state.lives));
+      }
     }
   });
 
@@ -43,19 +49,5 @@ export const renderGameThree = (state) => {
   selectScreen(gameThree);
 
   const gameTimer = gameThree.querySelector(`.game__timer`);
-  // startTimer(gameTimer, state);
-  const timer = setInterval((() => {
-    console.log(gameTimer.innerHTML);
-    gameTimer.innerHTML--;
-    if (Number(gameTimer.innerHTML) < 6) {
-      gameTimer.style.color = `red`;
-      setTimeout(()=>{
-        gameTimer.style.color = `black`;
-      }, 500);
-    }
-    if (gameTimer.innerHTML === `0`) {
-      clearInterval(timer);
-      shouldLevelRender(state, -1, setLives(state.lives));
-    }
-  }), 1000);
-}
+  const timer = createTimer(gameTimer, state);
+};
