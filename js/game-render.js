@@ -3,6 +3,7 @@ import {renderGameTwo} from "./game-2";
 import {renderGameThree} from "./game-3";
 import {renderGameOne} from "./game-1";
 import {showStats} from "./stats";
+import {resize} from "./data/resize";
 
 export const setQuestionStyle = (state) => {
   const answersLength = PIXEL_HUNTER[state.level].answers.length;
@@ -38,9 +39,21 @@ export const shouldLevelRender = (state, answer = -1, lives = state.lives) => {
 export const gameRender = (level, width, height) => {
   return `
       ${level.answers.map((it, i) => {
+    const img = new Image();
+    img.onload = function () {
+      //console.log(this);
+      const naturalSize = {width: this.width, height: this.height};
+      const resolution = resize({width, height}, naturalSize);
+      this.width = resolution.width;
+      this.height = resolution.height;
+      console.log(resolution.height, 1111);
+    };
+    img.src = it.img;
+    img.alt = `Option ${i + 1}`;
+    console.log(img);
     return level.photoPaint
       ? `<div class="game__option">
-              <img src=${it.img} alt="Option ${i + 1}" width=${width} height=${height}>
+              ${img.outerHTML}
               <label class="game__answer game__answer--photo">
                 <input class="visually-hidden" name="question${i + 1}" type="radio" value="photo">
                 <span>Фото</span>
@@ -51,7 +64,7 @@ export const gameRender = (level, width, height) => {
               </label>
             </div>`
       : `<div class="game__option">
-              <img src=${it.img} alt="Option ${i + 1}" width=${width} height=${height}>
+              ${img}
               </div>`;
   }).join(``)}`;
 };

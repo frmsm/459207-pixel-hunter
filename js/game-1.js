@@ -14,12 +14,13 @@ const tmp = (state) => `<header class="header">
   <section class="game">
     <p class="game__task">${PIXEL_HUNTER[state.level].question}</p>
     <form class="game__content">
-      ${gameRender(PIXEL_HUNTER[state.level], `468`, `458`)}
+      ${gameRender(PIXEL_HUNTER[state.level], 468, 458)}
     </form>
     ${curStats(state.answers)}
   </section>`;
 
 export const renderGameOne = (state) => {
+
   const gameOne = getElementFromTemplate(tmp(state));
   const gameContent = gameOne.querySelector(`.game__content`);
 
