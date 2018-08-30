@@ -119,7 +119,7 @@ export const setLevel = (lvl) => {
     throw new Error(`Level should be number`);
   }
 
-  if (lvl> MAX_LEVEL) {
+  if (lvl > MAX_LEVEL) {
     return 0;
   }
 
