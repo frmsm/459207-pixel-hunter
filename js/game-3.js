@@ -1,70 +1,52 @@
 import {getElementFromTemplate, selectScreen} from "./utils";
-import {showStats} from "./stats";
 import {showGreetings} from "./greeting";
+import {backButton} from "./back-button";
+import {gameHeader} from "./game-header";
+import {gameRender, shouldLevelRender} from "./game-render";
+import {PIXEL_HUNTER, setLives} from "./data/game";
+import {curStats} from "./current-stats";
+import {createTimer} from "./timer";
 
-const tmp = `<header class="header">
-    <button class="back">
-      <span class="visually-hidden">Вернуться к началу</span>
-      <svg class="icon" width="45" height="45" viewBox="0 0 45 45" fill="#000000">
-        <use xlink:href="img/sprite.svg#arrow-left"></use>
-      </svg>
-      <svg class="icon" width="101" height="44" viewBox="0 0 101 44" fill="#000000">
-        <use xlink:href="img/sprite.svg#logo-small"></use>
-      </svg>
-    </button>
-    <div class="game__timer">NN</div>
-    <div class="game__lives">
-      <img src="img/heart__empty.svg" class="game__heart" alt="Life" width="31" height="27">
-      <img src="img/heart__full.svg" class="game__heart" alt="Life" width="31" height="27">
-      <img src="img/heart__full.svg" class="game__heart" alt="Life" width="31" height="27">
-    </div>
+const tmp = (state) => `<header class="header">
+    ${backButton}
+    ${gameHeader(state)}
   </header>
   <section class="game">
-    <p class="game__task">Найдите рисунок среди изображений</p>
-    <form class="game__content  game__content--triple">
-      <div class="game__option">
-        <img src="http://placehold.it/304x455" alt="Option 1" width="304" height="455">
-      </div>
-      <div class="game__option">
-        <img src="http://placehold.it/304x455" alt="Option 2" width="304" height="455">
-      </div>
-      <div class="game__option">
-        <img src="http://placehold.it/304x455" alt="Option 3" width="304" height="455">
-      </div>
+    <p class="game__task">${PIXEL_HUNTER[state.level].question}</p>
+    <form class="game__content game__content--triple">
+      ${gameRender(PIXEL_HUNTER[state.level], `304`, `455`)}
     </form>
-    <ul class="stats">
-      <li class="stats__result stats__result--wrong"></li>
-      <li class="stats__result stats__result--slow"></li>
-      <li class="stats__result stats__result--fast"></li>
-      <li class="stats__result stats__result--correct"></li>
-      <li class="stats__result stats__result--wrong"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--slow"></li>
-      <li class="stats__result stats__result--unknown"></li>
-      <li class="stats__result stats__result--fast"></li>
-      <li class="stats__result stats__result--unknown"></li>
-    </ul>
+    ${curStats(state.answers)}
   </section>`;
 
-// Я удалил game__option--selected из вёрстки за ненадобностью
+export const renderGameThree = (state) => {
+  const gameThree = getElementFromTemplate(tmp(state));
 
-const gameThree = getElementFromTemplate(tmp);
+  const gameContent = gameThree.querySelector(`.game__content`);
 
-export const showGameThree = () => {
+  gameContent.addEventListener(`click`, (e) => {
+    const gameOption = e.target.closest(`.game__option`);
+    if (gameOption) {
+      gameOption.classList.add(`game__option--selected`);
+      const imgIndex = gameOption.firstElementChild.alt.substr(-1, 1) - 1;
+      clearInterval(timer);
+      if (PIXEL_HUNTER[state.level].answers[imgIndex].type) {
+        shouldLevelRender(state, Number(gameTimer.innerHTML));
+      } else {
+        shouldLevelRender(state, -1, setLives(state.lives - 1));
+      }
+    }
+  });
+
+  const goBackButton = gameThree.querySelector(`.back`);
+  goBackButton.addEventListener(`click`, (e) => {
+    e.preventDefault();
+    clearInterval(timer);
+    showGreetings();
+  });
+
   selectScreen(gameThree);
+
+  const gameTimer = gameThree.querySelector(`.game__timer`);
+  const timer = createTimer(gameTimer, state);
 };
-
-const gameContent = gameThree.querySelector(`.game__content`);
-
-gameContent.addEventListener(`click`, (e) => {
-  if (e.target.closest(`.game__option`)) {
-    e.target.closest(`.game__option`).classList.add(`game__option--selected`);
-    showStats();
-  }
-});
-
-const goBackButton = gameThree.querySelector(`.back`);
-goBackButton.addEventListener(`click`, (e) => {
-  e.preventDefault();
-  showGreetings();
-});

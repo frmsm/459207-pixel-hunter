@@ -1,13 +1,76 @@
-const ANSWERS_COUNT = 10;
+export const INITIAL_STATE = Object.freeze({
+  level: 0,
+  lives: 3,
+  time: 30,
+  answers: [],
+});
+
+export const PIXEL_HUNTER = [
+  {
+    photoPaint: true,
+    question: `Угадайте для каждого изображения фото или рисунок?`,
+    answers: [{img: `http://placehold.it/468x458`, type: `photo`}, {img: `http://placehold.it/468x458`, type: `paint`}],
+  },
+  {
+    photoPaint: true,
+    question: `Угадай, фото или рисунок?`,
+    answers: [{img: `http://placehold.it/705x455`, type: `photo`}]
+  },
+  {
+    photoPaint: false,
+    question: `Найдите рисунок среди изображений`,
+    answers: [{img: `http://placehold.it/304x455`, type: true}, {img: `http://placehold.it/304x455`, type: false}, {img: `http://placehold.it/304x455`, type: false}],
+  },
+  {
+    photoPaint: true,
+    question: `Угадайте для каждого изображения фото или рисунок?`,
+    answers: [{img: `http://placehold.it/468x458`, type: `photo`}, {img: `http://placehold.it/468x458`, type: `paint`}],
+  },
+  {
+    photoPaint: true,
+    question: `Угадай, фото или рисунок?`,
+    answers: [{img: `http://placehold.it/705x455`, type: `photo`}]
+  },
+  {
+    photoPaint: false,
+    question: `Найдите рисунок среди изображений`,
+    answers: [{img: `http://placehold.it/304x455`, type: true}, {img: `http://placehold.it/304x455`, type: false}, {img: `http://placehold.it/304x455`, type: false}],
+  },
+  {
+    photoPaint: true,
+    question: `Угадайте для каждого изображения фото или рисунок?`,
+    answers: [{img: `http://placehold.it/468x458`, type: `photo`}, {img: `http://placehold.it/468x458`, type: `paint`}],
+  },
+  {
+    photoPaint: true,
+    question: `Угадай, фото или рисунок?`,
+    answers: [{img: `http://placehold.it/705x455`, type: `photo`}]
+  },
+  {
+    photoPaint: false,
+    question: `Найдите рисунок среди изображений`,
+    answers: [{img: `http://placehold.it/304x455`, type: true}, {img: `http://placehold.it/304x455`, type: false}, {img: `http://placehold.it/304x455`, type: false}],
+  },
+  {
+    photoPaint: true,
+    question: `Угадай, фото или рисунок?`,
+    answers: [{img: `http://placehold.it/705x455`, type: `photo`}]
+  },
+];
+
+export const RESUTS = [];
+
+export const ANSWERS_COUNT = 10;
 const ANSWER_SCORE = 100;
 const FAST_ANSWER_SCORE = 50;
 const SLOW_ANSWER_SCORE = -50;
 const REST_LIVE_SCORE = 50;
-const FAST_ANSWER_TIME = 10;
-const SLOW_ANSWER_TIME = 20;
+export const FAST_ANSWER_TIME = 20;
+export const SLOW_ANSWER_TIME = 10;
 const MAX_LIVES_COUNT = 3;
 const MAX_TIME = 30;
 const MAX_LEVEL = 9;
+
 
 export const checkScores = (answers = [], lives) => {
   if (answers.length < ANSWERS_COUNT) {
@@ -19,10 +82,10 @@ export const checkScores = (answers = [], lives) => {
       return sum;
     }
     sum += ANSWER_SCORE;
-    if (answer.time < FAST_ANSWER_TIME) {
+    if (answer.time > FAST_ANSWER_TIME) {
       return sum + FAST_ANSWER_SCORE;
     }
-    if (answer.time > SLOW_ANSWER_TIME) {
+    if (answer.time < SLOW_ANSWER_TIME && answer.time > -1) {
       return sum + SLOW_ANSWER_SCORE;
     }
     return sum;
@@ -50,4 +113,29 @@ const isValid = (propType, maxLength, prop) => {
 export const isValidLives = isValid.bind(null, `Lives`, MAX_LIVES_COUNT);
 export const isValidTime = isValid.bind(null, `Time`, MAX_TIME);
 export const isValidLevel = isValid.bind(null, `Level`, MAX_LEVEL);
+
+export const setLevel = (lvl) => {
+  if (typeof lvl !== `number`) {
+    throw new Error(`Level should be number`);
+  }
+
+  if (lvl > MAX_LEVEL) {
+    return 0;
+  }
+
+  if (lvl < 0) {
+    throw new Error(`Level should not be negative`);
+  }
+
+  return lvl;
+};
+
+export const setLives = (live) => {
+  if (live < 0) {
+    return -1;
+  }
+
+  return live;
+};
+
 

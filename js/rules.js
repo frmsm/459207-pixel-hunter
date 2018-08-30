@@ -1,19 +1,10 @@
 import {getElementFromTemplate, selectScreen} from "./utils";
-import {showGameOne} from "./game-1";
 import {showGreetings} from "./greeting";
+import {backButton} from "./back-button";
+import {INITIAL_STATE} from "./data/game";
+import {firstLevelRender} from "./game-render";
 
-const tmp = `<header class="header">
-    <button class="back">
-      <span class="visually-hidden">Вернуться к началу</span>
-      <svg class="icon" width="45" height="45" viewBox="0 0 45 45" fill="#000000">
-        <use xlink:href="img/sprite.svg#arrow-left"></use>
-      </svg>
-      <svg class="icon" width="101" height="44" viewBox="0 0 101 44" fill="#000000">
-        <use xlink:href="img/sprite.svg#logo-small"></use>
-      </svg>
-    </button>
-  </header>
-  <section class="rules">
+const rulesElem = `<section class="rules">
     <h2 class="rules__title">Правила</h2>
     <ul class="rules__description">
       <li>Угадай 10 раз для каждого изображения фото
@@ -30,6 +21,11 @@ const tmp = `<header class="header">
     </form>
   </section>`;
 
+const tmp = `<header class="header">
+    ${backButton}
+  </header>
+  ${rulesElem}`;
+
 const MIN_NAME_LENGTH = 4;
 
 let rules = getElementFromTemplate(tmp);
@@ -43,7 +39,7 @@ const inputName = rules.querySelector(`.rules__input`);
 const goButton = rules.querySelector(`.rules__button`);
 goButton.addEventListener(`click`, (e)=>{
   e.preventDefault();
-  showGameOne();
+  firstLevelRender(INITIAL_STATE);
 });
 
 const goBackButton = rules.querySelector(`.back`);
