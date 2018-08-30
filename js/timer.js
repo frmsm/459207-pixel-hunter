@@ -12,7 +12,7 @@ export const createTimer = (timerElement, state) => {
     }
     if (timerElement.textContent === `0`) {
       clearInterval(timer);
-      shouldLevelRender(state, -1, setLives(state.lives));
+      shouldLevelRender(state, -1, setLives(state.lives - 1));
     }
   }), 1000);
   return timer;

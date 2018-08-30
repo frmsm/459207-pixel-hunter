@@ -60,16 +60,17 @@ export const PIXEL_HUNTER = [
 
 export const RESUTS = [];
 
-const ANSWERS_COUNT = 10;
+export const ANSWERS_COUNT = 10;
 const ANSWER_SCORE = 100;
 const FAST_ANSWER_SCORE = 50;
 const SLOW_ANSWER_SCORE = -50;
 const REST_LIVE_SCORE = 50;
-const FAST_ANSWER_TIME = 20;
-const SLOW_ANSWER_TIME = 10;
+export const FAST_ANSWER_TIME = 20;
+export const SLOW_ANSWER_TIME = 10;
 const MAX_LIVES_COUNT = 3;
 const MAX_TIME = 30;
 const MAX_LEVEL = 9;
+
 
 export const checkScores = (answers = [], lives) => {
   if (answers.length < ANSWERS_COUNT) {
@@ -118,23 +119,23 @@ export const setLevel = (lvl) => {
     throw new Error(`Level should be number`);
   }
 
-  if (lvl + 1 > MAX_LEVEL) {
+  if (lvl> MAX_LEVEL) {
     return 0;
   }
 
-  if (lvl + 1 < 0) {
+  if (lvl < 0) {
     throw new Error(`Level should not be negative`);
   }
 
-  return ++lvl;
+  return lvl;
 };
 
 export const setLives = (live) => {
-  if (live - 1 < 0) {
+  if (live < 0) {
     return -1;
   }
 
-  return --live;
+  return live;
 };
 
 

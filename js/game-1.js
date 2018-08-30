@@ -19,7 +19,6 @@ const tmp = (state) => `<header class="header">
     ${curStats(state.answers)}
   </section>`;
 
-// const gameOne = (level) = getElementFromTemplate(tmp(level));
 export const renderGameOne = (state) => {
   const gameOne = getElementFromTemplate(tmp(state));
   const gameContent = gameOne.querySelector(`.game__content`);
@@ -36,7 +35,7 @@ export const renderGameOne = (state) => {
       if (q1 === answers[0].type && q2 === answers[1].type) {
         shouldLevelRender(state, Number(gameTimer.innerHTML));
       } else {
-        shouldLevelRender(state, -1, setLives(state.lives));
+        shouldLevelRender(state, -1, setLives(state.lives - 1));
       }
     }
   });

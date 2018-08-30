@@ -19,8 +19,6 @@ const tmp = (state) => `<header class="header">
     ${curStats(state.answers)}
   </section>`;
 
-// Я удалил game__option--selected из вёрстки за ненадобностью
-
 export const renderGameThree = (state) => {
   const gameThree = getElementFromTemplate(tmp(state));
 
@@ -30,12 +28,12 @@ export const renderGameThree = (state) => {
     const gameOption = e.target.closest(`.game__option`);
     if (gameOption) {
       gameOption.classList.add(`game__option--selected`);
-      const imgIndex = gameOption.children[0].alt.substr(-1, 1) - 1;
+      const imgIndex = gameOption.firstElementChild.alt.substr(-1, 1) - 1;
       clearInterval(timer);
       if (PIXEL_HUNTER[state.level].answers[imgIndex].type) {
         shouldLevelRender(state, Number(gameTimer.innerHTML));
       } else {
-        shouldLevelRender(state, -1, setLives(state.lives));
+        shouldLevelRender(state, -1, setLives(state.lives - 1));
       }
     }
   });

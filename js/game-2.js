@@ -34,7 +34,7 @@ export const renderGameTwo = (state) => {
       if (q1 === answers[0].type) {
         shouldLevelRender(state, Number(gameTimer.innerHTML));
       } else {
-        shouldLevelRender(state, -1, setLives(state.lives));
+        shouldLevelRender(state, -1, setLives(state.lives - 1));
       }
     }
   });

@@ -25,7 +25,7 @@ export const firstLevelRender = (state) => {
 
 export const shouldLevelRender = (state, answer = -1, lives = state.lives) => {
   const newState = Object.assign({}, state,
-      {level: setLevel(state.level),
+      {level: setLevel(state.level + 1),
         answers: [...state.answers, answer],
         lives});
   if (newState.level && newState.lives > -1) {
