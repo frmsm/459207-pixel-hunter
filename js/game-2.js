@@ -1,4 +1,4 @@
-import {checkQuestion, getElementFromTemplate, selectScreen} from "./utils";
+import {addImages, checkQuestion, getElementFromTemplate, selectScreen} from "./utils";
 import {showGreetings} from "./greeting";
 import {backButton} from "./back-button";
 import {gameHeader} from "./game-header";
@@ -14,16 +14,24 @@ const tmp = (state) => `<header class="header">
   <section class="game">
     <p class="game__task">${PIXEL_HUNTER[state.level].question}</p>
     <form class="game__content game__content--wide">
-      ${gameRender(PIXEL_HUNTER[state.level], `705`, `455`)}
+      ${gameRender(PIXEL_HUNTER[state.level])}
     </form>
     ${curStats(state.answers)}
   </section>`;
 
 export const renderGameTwo = (state) => {
+  const frame = {
+    width: 705,
+    height: 455
+  };
+
   const gameTwo = getElementFromTemplate(tmp(state));
 
   const gameContent = gameTwo.querySelector(`.game__content`);
   const questionOne = gameTwo.querySelectorAll(`[name='question1']`);
+
+  const images = gameTwo.querySelectorAll(`.game__option`);
+  addImages(images, state, frame);
 
   const answers = PIXEL_HUNTER[state.level].answers;
 
