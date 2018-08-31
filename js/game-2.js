@@ -1,8 +1,8 @@
-import {addImages, checkQuestion, getElementFromTemplate, selectScreen} from "./utils";
+import {checkQuestion, getElementFromTemplate, selectScreen} from "./utils";
 import {showGreetings} from "./greeting";
 import {backButton} from "./back-button";
 import {gameHeader} from "./game-header";
-import {gameRender, shouldLevelRender} from "./game-render";
+import {addImages, gameRender, shouldLevelRender} from "./game-render";
 import {PIXEL_HUNTER, setLives} from "./data/game";
 import {curStats} from "./current-stats";
 import {createTimer} from "./timer";

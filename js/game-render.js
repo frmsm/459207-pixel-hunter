@@ -3,6 +3,7 @@ import {renderGameTwo} from "./game-2";
 import {renderGameThree} from "./game-3";
 import {renderGameOne} from "./game-1";
 import {showStats} from "./stats";
+import {resize} from "./data/resize";
 
 export const setQuestionStyle = (state) => {
   const answersLength = PIXEL_HUNTER[state.level].answers.length;
@@ -17,6 +18,21 @@ export const setQuestionStyle = (state) => {
       renderGameOne(state);
       break;
   }
+};
+
+export const addImages = (images, state, frame) => {
+  [...images].forEach((it, i) => {
+    const img = new Image();
+    img.addEventListener(`load`, function () {
+      const naturalSize = {width: img.width, height: img.height};
+      const resolution = resize(frame, naturalSize);
+      img.width = resolution.width;
+      img.height = resolution.height;
+      it.appendChild(img);
+    });
+    img.src = PIXEL_HUNTER[state.level].answers[i].img;
+    img.alt = `Option ${i + 1}`;
+  });
 };
 
 export const firstLevelRender = (state) => {
@@ -50,6 +66,6 @@ export const gameRender = (level) => {
               </label>
             </div>`
       : `<div class="game__option">            
-           </div>`;
+         </div>`;
   }).join(``)}`;
 };
