@@ -40,18 +40,14 @@ export const gameRender = (level, width, height) => {
   return `
       ${level.answers.map((it, i) => {
     const img = new Image();
-    //let im = ``;
-    img.onload = function () {
-      console.log(this);
-      const naturalSize = {width: this.width, height: this.height};
+    img.addEventListener(`load`, function () {
+      const naturalSize = {width: img.width, height: img.height};
       const resolution = resize({width, height}, naturalSize);
-      this.width = resolution.width;
-      this.height = resolution.height;
-      console.log(resolution.height, 1111);
-      // im = `<img src=${this.src} alt="Option ${i + 1}" width=${this.width} height=${this.height}>`;
+      img.width = resolution.width;
+      img.height = resolution.height;
       return level.photoPaint
         ? `<div class="game__option">
-              <img src=${this.src} alt="Option ${i + 1}" width=${this.width} height=${this.height}>
+              <img src=${img.src} alt="Option ${i + 1}" width=${img.width} height=${img.height}>
               <label class="game__answer game__answer--photo">
                 <input class="visually-hidden" name="question${i + 1}" type="radio" value="photo">
                 <span>Фото</span>
@@ -62,11 +58,9 @@ export const gameRender = (level, width, height) => {
               </label>
             </div>`
         : `<div class="game__option">
-              <img src=${()=>this.src} alt="Option ${i + 1}" width=${this.width} height=${this.height}>
+              <img src=${img.src} alt="Option ${i + 1}" width=${img.width} height=${img.height}>
               </div>`;
-    };
+    });
     img.src = it.img;
-    // img.alt = `Option ${i + 1}`;
-    // console.log(im);
   }).join(``)}`;
 };
