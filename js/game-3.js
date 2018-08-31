@@ -2,7 +2,7 @@ import {getElementFromTemplate, selectScreen} from "./utils";
 import {showGreetings} from "./greeting";
 import {backButton} from "./back-button";
 import {gameHeader} from "./game-header";
-import {gameRender, shouldLevelRender} from "./game-render";
+import {addImages, gameRender, shouldLevelRender} from "./game-render";
 import {PIXEL_HUNTER, setLives} from "./data/game";
 import {curStats} from "./current-stats";
 import {createTimer} from "./timer";
@@ -14,15 +14,23 @@ const tmp = (state) => `<header class="header">
   <section class="game">
     <p class="game__task">${PIXEL_HUNTER[state.level].question}</p>
     <form class="game__content game__content--triple">
-      ${gameRender(PIXEL_HUNTER[state.level], `304`, `455`)}
+      ${gameRender(PIXEL_HUNTER[state.level])}
     </form>
     ${curStats(state.answers)}
   </section>`;
 
 export const renderGameThree = (state) => {
+  const frame = {
+    width: 304,
+    height: 455
+  };
+
   const gameThree = getElementFromTemplate(tmp(state));
 
   const gameContent = gameThree.querySelector(`.game__content`);
+
+  const images = gameThree.querySelectorAll(`.game__option`);
+  addImages(images, state, frame);
 
   gameContent.addEventListener(`click`, (e) => {
     const gameOption = e.target.closest(`.game__option`);
