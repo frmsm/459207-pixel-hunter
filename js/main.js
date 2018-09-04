@@ -1,6 +1,10 @@
-import {showIntro} from "./intro";
+
+import {renderWelcome} from "./screen-render";
 
 export const main = document.getElementById(`main`);
 
-showIntro();
+const startGame = () => {
+  renderWelcome();
+};
 
+startGame();

@@ -1,7 +1,12 @@
-import {getElementFromTemplate, selectScreen} from "./utils";
-import {showRules} from "./rules";
+import AbstractView from "./Abstract";
 
-const tmp = `<section class="greeting central--blur">
+export default class Greetings extends AbstractView {
+  constructor() {
+    super();
+  }
+
+  get template() {
+    return `<section class="greeting central--blur">
     <img class="greeting__logo" src="img/logo_ph-big.svg" width="201" height="89" alt="Pixel Hunter">
     <div class="greeting__asterisk asterisk"><span class="visually-hidden">Я просто красивая звёздочка</span>*</div>
     <div class="greeting__challenge">
@@ -21,15 +26,13 @@ const tmp = `<section class="greeting central--blur">
       </svg>
     </button>
   </section>`;
+  }
 
-let greeting = getElementFromTemplate(tmp);
+  onClick() {}
 
-export const showGreetings = () => {
-  selectScreen(greeting);
-};
-
-greeting.querySelector(`.greeting__continue`).addEventListener(`click`, () => {
-  showRules();
-});
-
-export default greeting;
+  bind() {
+    this.element.querySelector(`.greeting__continue`).addEventListener(`click`, () => {
+      this.onClick();
+    });
+  }
+}

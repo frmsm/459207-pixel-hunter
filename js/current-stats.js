@@ -9,7 +9,7 @@ export const curStats = (answers) => {
     if (it < SLOW_ANSWER_TIME) {
       return `<li class="stats__result stats__result--slow"></li>`;
     }
-    if (it > FAST_ANSWER_TIME) {
+    if (it >= FAST_ANSWER_TIME) {
       return `<li class="stats__result stats__result--fast"></li>`;
     }
     if (it > SLOW_ANSWER_TIME && it < FAST_ANSWER_TIME) {
