@@ -60,6 +60,8 @@ export const SLOW_ANSWER_TIME = 10;
 const MAX_LIVES_COUNT = 3;
 const MAX_TIME = 30;
 const MAX_LEVEL = 9;
+export const WRONG_ANSWER = -1;
+export const ONE_SECOND = 1000;
 
 
 export const checkScores = (answers = [], lives) => {

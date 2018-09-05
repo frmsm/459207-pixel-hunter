@@ -1,5 +1,5 @@
-import AbstractView from "./Abstract";
-import {gameHeader} from "../game-header";
+import AbstractView from "../Abstract";
+// import {gameHeader} from "../game-header";
 
 export default class BackButton extends AbstractView {
   constructor(state = null) {
@@ -8,7 +8,7 @@ export default class BackButton extends AbstractView {
   }
 
   get template() {
-    return `<header class="header">
+    return `
       <button class="back">
       <span class="visually-hidden">Вернуться к началу</span>
       <svg class="icon" width="45" height="45" viewBox="0 0 45 45" fill="#000000">
@@ -17,9 +17,7 @@ export default class BackButton extends AbstractView {
       <svg class="icon" width="101" height="44" viewBox="0 0 101 44" fill="#000000">
         <use xlink:href="img/sprite.svg#logo-small"></use>
       </svg>
-    </button>
-    ${gameHeader(this.state)}
-    </header>`;
+    </button>`;
   }
 
   onClick() {}
@@ -29,3 +27,5 @@ export default class BackButton extends AbstractView {
     goBackButton.addEventListener(`click`, this.onClick);
   }
 }
+
+//   ${gameHeader(this.state)}
