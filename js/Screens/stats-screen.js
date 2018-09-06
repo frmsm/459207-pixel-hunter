@@ -61,9 +61,13 @@ export default class StatsScreen extends AbstractView {
     }`;
   }
 
+  get scoreType() {
+    return this.results[this.results.length - 1].score.total < 0;
+  }
+
   get template() {
     return `<section class="result">
-    <h2 class="result__title">${this.results[this.results.length - 1].score.total < 0 ? `FAIL` : `Победа`}</h2>
+    <h2 class="result__title">${this.scoreType ? `FAIL` : `Победа`}</h2>
       <table class="result__table">
         ${this.resultsRender(this.results)}
       </table>

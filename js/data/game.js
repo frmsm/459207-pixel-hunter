@@ -44,7 +44,7 @@ export const PIXEL_HUNTER = [
   },
   {
     question: `Угадай, фото или рисунок?`,
-    answers: [{img: `http://placehold{}.it/705x455`, type: `photo`}]
+    answers: [{img: `http://placehold.it/705x455`, type: `photo`}]
   },
 ];
 

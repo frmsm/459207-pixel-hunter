@@ -29,12 +29,12 @@ const stopTimer = () => {
 };
 
 const tick = (state) => {
-  if (gameTime === 0) {
+  if (gameTime === 25) {
     stopTimer();
     levelRender(state, WRONG_ANSWER, setLives(state.lives - 1));
   } else {
     updateView(time, new GameTimer(--gameTime));
-    startTimer();
+    startTimer(state);
   }
 };
 
@@ -80,36 +80,32 @@ const levelRender = (state, answer = null, lives = state.lives) => {
 };
 
 export const setGameType = (state) => {
-  const answersLength = PIXEL_HUNTER[state.level].answers.length;
-  switch (answersLength) {
-    case 3:
-      gameThreeScreenRender(state);
-      break;
-    case 1:
-      gameTwoScreenRender(state);
-      break;
-    case 2:
-      gameOneScreenRender(state);
-      break;
-    default:
-      greetingsScreenRender();
-  }
+  const images = PIXEL_HUNTER[state.level].answers.length;
+  const gameTypes = {
+    1: GameTwo,
+    2: GameOne,
+    3: GameThree
+  };
+  gameScreenRender(state, gameTypes[images]);
 };
 
-const gameScreenRender = (state, game) => {
-  game.onAnswer = (answer) => {
+const gameScreenRender = (state, Game) => {
+  const newGame = new Game(PIXEL_HUNTER[state.level], state.answers);
+  startTimer(state);
+  newGame.onAnswer = (answer) => {
+    stopTimer();
     if (answer) {
       levelRender(state, gameTime);
     } else {
       levelRender(state, WRONG_ANSWER, setLives(state.lives - 1));
     }
-    stopTimer();
   };
   const backEl = new BackButton(state);
   const timeEl = new GameTimer(INITIAL_STATE.time);
   const liveEl = new GameLives(state);
   backEl.onClick = () => {
     greetingsScreenRender();
+    stopTimer();
   };
   main.innerHTML = ``;
   updateView(back, backEl);
@@ -119,27 +115,9 @@ const gameScreenRender = (state, game) => {
   headerElement.appendChild(back);
   headerElement.appendChild(time);
   headerElement.appendChild(live);
-  updateView(levelElement, game);
+  updateView(levelElement, newGame);
   main.appendChild(headerElement);
   main.appendChild(gameContainerElement);
-};
-
-export const gameOneScreenRender = (state) => {
-  const game = new GameOne(PIXEL_HUNTER[state.level], state.answers);
-  gameScreenRender(state, game);
-  startTimer(state);
-};
-
-export const gameTwoScreenRender = (state) => {
-  const game = new GameTwo(PIXEL_HUNTER[state.level], state.answers);
-  gameScreenRender(state, game);
-  startTimer(state);
-};
-
-export const gameThreeScreenRender = (state) => {
-  const game = new GameThree(PIXEL_HUNTER[state.level], state.answers);
-  gameScreenRender(state, game);
-  startTimer(state);
 };
 
 const greetingsScreenRender = () => {
@@ -156,6 +134,7 @@ const renderStats = () => {
   const header = new BackButton();
   header.onClick = () => {
     greetingsScreenRender();
+    stopTimer();
   };
   main.innerHTML = ``;
   updateView(headerElement, header);
@@ -171,6 +150,7 @@ const renderRules = () => {
   const header = new BackButton();
   header.onClick = () => {
     greetingsScreenRender();
+    stopTimer();
   };
   main.innerHTML = ``;
   updateView(headerElement, header);

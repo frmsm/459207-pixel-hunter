@@ -7,35 +7,14 @@ export default class LevelView extends AbstractView {
     super();
     this.answers = answers;
     this.level = level;
-    this.gameContentStyle = {
-      1: `game__content--wide`,
-      2: ``,
-      3: `game__content--triple`,
-    };
-    this.answersCount = level.answers.length;
     this.FIND_CORRECT_IMAGES_COUNT = 3;
-    this.frame = {
-      2: {
-        width: 468,
-        height: 450
-      },
-      1: {
-        width: 705,
-        height: 455
-      },
-      3: {
-        width: 304,
-        height: 455
-      }
-    };
-    this.addImage(this.element);
   }
 
   get template() {
     return `
 <section class="game">
     <p class="game__task">${this.level.question}</p>
-    <form class="game__content ${this.gameContentStyle[this.level.answers.length]}">
+    <form class="game__content">
     ${this.level.answers.map((it, i) => {
     return this.level.answers.length !== this.FIND_CORRECT_IMAGES_COUNT
       ? `<div class="game__option">      
@@ -56,7 +35,7 @@ export default class LevelView extends AbstractView {
 </section>`;
   }
 
-  addImages(images, level, frame) {
+  setContentStyle(images, level, frame) {
     [...images].forEach((it, i) => {
       const img = new Image();
       img.addEventListener(`load`, function () {
@@ -73,16 +52,9 @@ export default class LevelView extends AbstractView {
 
   onAnswer() {}
 
-  checkQuestion(question) {
-    let value = ``;
-    return [...question].some((q)=> {
-      value = q.value;
+  getQuestionValue(question) {
+    return [...question].find((q) => {
       return q.type === `radio` && q.checked;
-    }) ? value : false;
-  }
-
-  addImage() {
-    const images = this.element.querySelectorAll(`.game__option`);
-    this.addImages(images, this.level, this.frame[this.answersCount]);
+    });
   }
 }
