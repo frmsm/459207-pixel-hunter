@@ -7,58 +7,48 @@ export const INITIAL_STATE = Object.freeze({
 
 export const PIXEL_HUNTER = [
   {
-    photoPaint: true,
     question: `Угадайте для каждого изображения фото или рисунок?`,
     answers: [{img: `http://i.imgur.com/1KegWPz.jpg`, type: `photo`}, {img: `https://k32.kn3.net/5C7060EC5.jpg`, type: `paint`}],
   },
   {
-    photoPaint: true,
     question: `Угадай, фото или рисунок?`,
     answers: [{img: `https://i.imgur.com/DiHM5Zb.jpg`, type: `photo`}]
   },
   {
-    photoPaint: false,
     question: `Найдите рисунок среди изображений`,
     answers: [{img: `https://k42.kn3.net/CF42609C8.jpg`, type: true}, {img: `https://i.imgur.com/DiHM5Zb.jpg`, type: false}, {img: `http://i.imgur.com/DKR1HtB.jpg`, type: false}],
   },
   {
-    photoPaint: true,
     question: `Угадайте для каждого изображения фото или рисунок?`,
     answers: [{img: `http://placehold.it/468x458`, type: `photo`}, {img: `http://placehold.it/468x458`, type: `paint`}],
   },
   {
-    photoPaint: true,
     question: `Угадай, фото или рисунок?`,
     answers: [{img: `http://placehold.it/705x455`, type: `photo`}]
   },
   {
-    photoPaint: false,
     question: `Найдите рисунок среди изображений`,
     answers: [{img: `http://placehold.it/304x455`, type: true}, {img: `http://placehold.it/304x455`, type: false}, {img: `http://placehold.it/304x455`, type: false}],
   },
   {
-    photoPaint: true,
     question: `Угадайте для каждого изображения фото или рисунок?`,
     answers: [{img: `http://placehold.it/468x458`, type: `photo`}, {img: `http://placehold.it/468x458`, type: `paint`}],
   },
   {
-    photoPaint: true,
     question: `Угадай, фото или рисунок?`,
     answers: [{img: `http://placehold.it/705x455`, type: `photo`}]
   },
   {
-    photoPaint: false,
     question: `Найдите рисунок среди изображений`,
     answers: [{img: `http://placehold.it/304x455`, type: true}, {img: `http://placehold.it/304x455`, type: false}, {img: `http://placehold.it/304x455`, type: false}],
   },
   {
-    photoPaint: true,
     question: `Угадай, фото или рисунок?`,
     answers: [{img: `http://placehold.it/705x455`, type: `photo`}]
   },
 ];
 
-export const RESUTS = [];
+export const RESULTS = [];
 
 export const ANSWERS_COUNT = 10;
 const ANSWER_SCORE = 100;
@@ -70,6 +60,8 @@ export const SLOW_ANSWER_TIME = 10;
 const MAX_LIVES_COUNT = 3;
 const MAX_TIME = 30;
 const MAX_LEVEL = 9;
+export const WRONG_ANSWER = -1;
+export const ONE_SECOND = 1000;
 
 
 export const checkScores = (answers = [], lives) => {

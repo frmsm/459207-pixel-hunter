@@ -11,6 +11,11 @@ export const selectScreen = (screen) => {
   main.appendChild(screen);
 };
 
+export const selectScreenClass = (screen) => {
+  main.innerHTML = ``;
+  main.appendChild(screen);
+};
+
 export const checkQuestion = (question) => {
   let value = ``;
   return [...question].some((q)=> {
