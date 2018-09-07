@@ -114,15 +114,22 @@ const gameScreenRender = (state, Game) => {
       levelRender(state, WRONG_ANSWER, setLives(state.lives - 1));
     }
   };
-  const backEl = renderBackButton();
-  const timeEl = new GameTimer(state.time);
-  const liveEl = new GameLives(state);
-  updateView(back, backEl);
-  updateView(time, timeEl);
-  updateView(live, liveEl);
+  renderBackButton();
+  renderTimer(state);
+  renderLive(state);
   updateScreen(headerElement, back, time, live);
   updateView(levelElement, newGame);
-  updateScreen(main, headerElement, gameContainerElement);
+  updateScreen(gameContainerElement, headerElement, levelElement);
+};
+
+const renderTimer = (state) => {
+  const timerEl = new GameTimer(state.time);
+  updateView(time, timerEl);
+};
+
+const renderLive = (state) => {
+  const liveEl = new GameLives(state);
+  updateView(live, liveEl);
 };
 // /
 
@@ -131,14 +138,16 @@ const greetingsScreenRender = () => {
   greeting.onClick = () => {
     renderRules();
   };
-  updateScreen(main, greeting.element);
+  updateView(levelElement, greeting);
+  updateScreen(gameContainerElement, levelElement);
 };
 
 const renderStats = () => {
   const stats = new StatsScreen(RESULTS);
-  const header = renderBackButton();
-  updateView(headerElement, header);
-  updateScreen(main, headerElement, stats.element);
+  renderBackButton();
+  updateScreen(headerElement, back);
+  updateView(levelElement, stats);
+  updateScreen(gameContainerElement, headerElement, levelElement);
 };
 
 const renderRules = () => {
@@ -146,9 +155,10 @@ const renderRules = () => {
   rules.onClick = () => {
     levelRender(INITIAL_STATE);
   };
-  const header = renderBackButton();
-  updateView(headerElement, header);
-  updateScreen(main, headerElement, rules.element);
+  renderBackButton();
+  updateScreen(headerElement, back);
+  updateView(levelElement, rules);
+  updateScreen(gameContainerElement, headerElement, levelElement);
 };
 
 const renderBackButton = () => {
@@ -157,7 +167,7 @@ const renderBackButton = () => {
     greetingsScreenRender();
     stopTimer();
   };
-  return header;
+  updateView(back, header);
 };
 
 export const renderWelcome = () => {
@@ -165,7 +175,8 @@ export const renderWelcome = () => {
   intro.onClick = () => {
     greetingsScreenRender();
   };
-  updateScreen(main, intro.element);
+  updateView(gameContainerElement, intro);
+  updateScreen(main, gameContainerElement);
 };
 
 
