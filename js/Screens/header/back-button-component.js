@@ -1,11 +1,6 @@
 import AbstractView from "../Abstract";
-// import {gameHeader} from "../game-header";
 
 export default class BackButton extends AbstractView {
-  constructor(state = null) {
-    super();
-    this.state = state;
-  }
 
   get template() {
     return `
@@ -28,4 +23,3 @@ export default class BackButton extends AbstractView {
   }
 }
 
-//   ${gameHeader(this.state)}

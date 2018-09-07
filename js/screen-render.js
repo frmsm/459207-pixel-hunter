@@ -10,12 +10,13 @@ import StatsScreen from "./Screens/stats-screen";
 import Rules from "./Screens/rules-screen";
 import IntroScreen from "./Screens/Welcome";
 import {gameHeader} from "./Screens/header/game-header";
-import {getElementFromTemplate} from "./utils";
 import GameLives from "./Screens/header/live";
 import GameTimer from "./Screens/header/time";
-
+// timer
 let gameTime = INITIAL_STATE.time;
 let timer;
+
+// Создать переменную и присвоить её state, и в ней работать с таймером
 
 const startTimer = (state) => {
   timer = setTimeout(() => {
@@ -38,21 +39,31 @@ const tick = (state) => {
   }
 };
 
+// timer /
+
+// rendering functions
 const render = (template = ``) => {
   const wrapper = document.createElement(`div`);
   wrapper.innerHTML = template;
   return wrapper;
 };
 
-const updateView = (container, ...view) => {
+const updateView = (container, view) => {
   container.innerHTML = ``;
-  [...view].forEach((it) => {
-    container.appendChild(it.element);
-  });
+  container.appendChild(view.element);
 };
 
+const updateScreen = (container, ...view) => {
+  container.innerHTML = ``;
+  [...view].forEach((it) => {
+    container.appendChild(it);
+  });
+};
+//
+
+// container functions
 const gameContainerElement = render();
-const headerElement = getElementFromTemplate(gameHeader()).firstElementChild;
+const headerElement = render(gameHeader).firstElementChild;
 const levelElement = render();
 
 const back = render();
@@ -61,7 +72,10 @@ const live = render();
 
 gameContainerElement.appendChild(headerElement);
 gameContainerElement.appendChild(levelElement);
+// /
 
+
+// screen render
 const levelRender = (state, answer = null, lives = state.lives) => {
   if (!answer) {
     setGameType(state);
@@ -100,46 +114,31 @@ const gameScreenRender = (state, Game) => {
       levelRender(state, WRONG_ANSWER, setLives(state.lives - 1));
     }
   };
-  const backEl = new BackButton(state);
-  const timeEl = new GameTimer(INITIAL_STATE.time);
+  const backEl = renderBackButton();
+  const timeEl = new GameTimer(state.time);
   const liveEl = new GameLives(state);
-  backEl.onClick = () => {
-    greetingsScreenRender();
-    stopTimer();
-  };
-  main.innerHTML = ``;
   updateView(back, backEl);
   updateView(time, timeEl);
   updateView(live, liveEl);
-  headerElement.innerHTML = ``;
-  headerElement.appendChild(back);
-  headerElement.appendChild(time);
-  headerElement.appendChild(live);
+  updateScreen(headerElement, back, time, live);
   updateView(levelElement, newGame);
-  main.appendChild(headerElement);
-  main.appendChild(gameContainerElement);
+  updateScreen(main, headerElement, gameContainerElement);
 };
+// /
 
 const greetingsScreenRender = () => {
   const greeting = new Greetings();
   greeting.onClick = () => {
     renderRules();
   };
-  main.innerHTML = ``;
-  main.appendChild(greeting.element);
+  updateScreen(main, greeting.element);
 };
 
 const renderStats = () => {
   const stats = new StatsScreen(RESULTS);
-  const header = new BackButton();
-  header.onClick = () => {
-    greetingsScreenRender();
-    stopTimer();
-  };
-  main.innerHTML = ``;
+  const header = renderBackButton();
   updateView(headerElement, header);
-  main.appendChild(headerElement);
-  main.appendChild(stats.element);
+  updateScreen(main, headerElement, stats.element);
 };
 
 const renderRules = () => {
@@ -147,15 +146,18 @@ const renderRules = () => {
   rules.onClick = () => {
     levelRender(INITIAL_STATE);
   };
+  const header = renderBackButton();
+  updateView(headerElement, header);
+  updateScreen(main, headerElement, rules.element);
+};
+
+const renderBackButton = () => {
   const header = new BackButton();
   header.onClick = () => {
     greetingsScreenRender();
     stopTimer();
   };
-  main.innerHTML = ``;
-  updateView(headerElement, header);
-  main.appendChild(headerElement);
-  main.appendChild(rules.element);
+  return header;
 };
 
 export const renderWelcome = () => {
@@ -163,8 +165,7 @@ export const renderWelcome = () => {
   intro.onClick = () => {
     greetingsScreenRender();
   };
-  main.innerHTML = ``;
-  main.appendChild(intro.element);
+  updateScreen(main, intro.element);
 };
 
 
