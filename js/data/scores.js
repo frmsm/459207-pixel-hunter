@@ -40,14 +40,13 @@ export const countScores = (statistic) => {
   const fast = statistic.fast * 50;
   const slow = statistic.slow * 50;
   const lives = statistic.lives * 50;
-  const score = {
+  return {
     answer,
     fast,
     slow,
     lives,
     total: answer + fast + lives - slow,
   };
-  return score;
 };
 
 export const pushResults = (state) => {

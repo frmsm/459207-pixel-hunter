@@ -1,7 +1,7 @@
 import {curStats} from "../current-stats";
 import AbstractView from "./Abstract";
 
-export default class StatsScreen extends AbstractView {
+export default class StatsView extends AbstractView {
   constructor(results) {
     super();
     this.results = results;

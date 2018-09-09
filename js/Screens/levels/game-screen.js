@@ -1,6 +1,6 @@
-import {resize} from "../data/resize";
-import AbstractView from "./Abstract";
-import {curStats} from "../current-stats";
+import {resize} from "../../data/resize";
+import AbstractView from "../Abstract";
+import {curStats} from "../../current-stats";
 
 export default class LevelView extends AbstractView {
   constructor(level, answers) {

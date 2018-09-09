@@ -1,4 +1,4 @@
-import AbstractView from "./Abstract";
+import AbstractView from "../Abstract";
 
 export default class Greetings extends AbstractView {
   constructor() {

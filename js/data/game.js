@@ -112,7 +112,7 @@ export const setLevel = (lvl) => {
   }
 
   if (lvl > MAX_LEVEL) {
-    return 0;
+    return -1;
   }
 
   if (lvl < 0) {
@@ -130,4 +130,23 @@ export const setLives = (live) => {
   return live;
 };
 
+export const tick = (state) => {
+  return Object.assign({}, state, {time: state.time - 1});
+};
+
+export const endTime = (state) => {
+  return state.time < 0;
+};
+
+export const die = (state) => {
+  return Object.assign({}, state, {lives: state.lives - 1, answers: [...state.answers, WRONG_ANSWER]});
+};
+
+export const changeLevel = (state, level) => {
+  return Object.assign({}, state, {time: INITIAL_STATE.time, level});
+};
+
+export const updateAnswers = (state) => {
+  return Object.assign({}, state, {answers: [...state.answers, state.time]});
+};
 
