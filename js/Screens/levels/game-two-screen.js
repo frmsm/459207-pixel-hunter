@@ -5,12 +5,11 @@ export default class GameTwo extends LevelView {
     super(level, answers);
     this.level = level;
     this.answers = answers;
-    this.frame = {width: 705, height: 455};
   }
 
   bind() {
     const images = this.element.querySelectorAll(`.game__option`);
-    this.setContentStyle(images, this.level, this.frame);
+    this.setContentStyle(images, this.level);
 
     const gameContent = this.element.querySelector(`.game__content`);
     gameContent.classList.add(`game__content--wide`);

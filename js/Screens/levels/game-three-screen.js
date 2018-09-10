@@ -5,12 +5,11 @@ export default class GameThree extends LevelView {
     super(level, answers);
     this.level = level;
     this.answers = answers;
-    this.frame = {width: 304, height: 455};
   }
 
   bind() {
     const images = this.element.querySelectorAll(`.game__option`);
-    this.setContentStyle(images, this.level, this.frame);
+    this.setContentStyle(images, this.level);
 
     const gameContent = this.element.querySelector(`.game__content`);
     gameContent.classList.add(`game__content--triple`);

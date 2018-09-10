@@ -7,7 +7,7 @@ export default class LevelView extends AbstractView {
     super();
     this.answers = answers;
     this.level = level;
-    this.FIND_CORRECT_IMAGES_COUNT = 3;
+    this.SCREEN_TYPE = `one-of-three`;
   }
 
   get template() {
@@ -16,7 +16,7 @@ export default class LevelView extends AbstractView {
     <p class="game__task">${this.level.question}</p>
     <form class="game__content">
     ${this.level.answers.map((it, i) => {
-    return this.level.answers.length !== this.FIND_CORRECT_IMAGES_COUNT
+    return this.level.type !== this.SCREEN_TYPE
       ? `<div class="game__option">      
               <label class="game__answer game__answer--photo">
                 <input class="visually-hidden" name="question${i + 1}" type="radio" value="photo">
@@ -35,11 +35,15 @@ export default class LevelView extends AbstractView {
 </section>`;
   }
 
-  setContentStyle(images, level, frame) {
+  setContentStyle(images, level) {
     [...images].forEach((it, i) => {
       const img = new Image();
       img.addEventListener(`load`, function () {
         const naturalSize = {width: img.width, height: img.height};
+        const frame = {
+          width: level.answers[i].image.width,
+          height: level.answers[i].image.height
+        };
         const resolution = resize(frame, naturalSize);
         img.width = resolution.width;
         img.height = resolution.height;
