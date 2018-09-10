@@ -1,4 +1,4 @@
-import {ONE_SECOND, TIME_LEFT} from "../data/game";
+import {HALF_SECOND, ONE_SECOND, TIME_LEFT} from "../data/game";
 import GameOneView from "../Screens/levels/game-one-view";
 import GameTwoView from "../Screens/levels/game-two-view";
 import GameThreeView from "../Screens/levels/game-three-view";
@@ -65,7 +65,7 @@ export default class LevelScreen {
       this.timer.element.style.color = `red`;
       setTimeout(()=>{
         this.timer.element.style.color = `black`;
-      }, 500);
+      }, HALF_SECOND);
     }
   }
 

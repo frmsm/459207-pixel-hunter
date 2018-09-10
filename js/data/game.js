@@ -20,7 +20,7 @@ const MAX_LEVEL = 9;
 export const WRONG_ANSWER = -1;
 export const ONE_SECOND = 1000;
 export const TIME_LEFT = 5;
-export const HALF_SECONF = 500;
+export const HALF_SECOND = 500;
 
 
 export const checkScores = (answers = [], lives) => {
