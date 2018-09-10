@@ -12,6 +12,7 @@ const checkStatus = (response) => {
 };
 
 let gameData;
+
 const updateScreen = (container, ...view) => {
   container.innerHTML = ``;
   [...view].forEach((it) => {
