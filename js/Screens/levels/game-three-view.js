@@ -1,6 +1,6 @@
-import LevelView from "./game-screen";
+import LevelView from "./game-view";
 
-export default class GameThree extends LevelView {
+export default class GameThreeView extends LevelView {
   constructor(level, answers) {
     super(level, answers);
     this.level = level;

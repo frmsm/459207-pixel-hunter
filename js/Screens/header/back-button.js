@@ -1,6 +1,6 @@
 import AbstractView from "../Abstract";
 
-export default class BackButton extends AbstractView {
+export default class BackButtonView extends AbstractView {
 
   get template() {
     return `<header class="header">

@@ -1,6 +1,6 @@
 import AbstractView from "./Abstract";
 
-export default class Rules extends AbstractView {
+export default class RulesView extends AbstractView {
   constructor() {
     super();
   }

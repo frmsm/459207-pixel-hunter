@@ -1,7 +1,7 @@
 import {ONE_SECOND} from "../data/game";
-import GameOne from "../Screens/levels/game-one-screen";
-import GameTwo from "../Screens/levels/game-two-screen";
-import GameThree from "../Screens/levels/game-three-screen";
+import GameOneView from "../Screens/levels/game-one-view";
+import GameTwoView from "../Screens/levels/game-two-view";
+import GameThreeView from "../Screens/levels/game-three-view";
 import GameTimer from "../Screens/header/time";
 import GameLives from "../Screens/header/live";
 import Router from "./router";
@@ -77,9 +77,9 @@ export default class LevelScreen {
     const level = this.model.getCurrentLevel();
     const type = level.type;
     const gameTypes = {
-      'tinder-like': GameTwo,
-      'two-of-two': GameOne,
-      'one-of-three': GameThree
+      'tinder-like': GameTwoView,
+      'two-of-two': GameOneView,
+      'one-of-three': GameThreeView
     };
     return new gameTypes[type](level, state.answers);
   }

@@ -1,6 +1,6 @@
 import AbstractView from "../Abstract";
 
-export default class GameTimer extends AbstractView {
+export default class GameTimerView extends AbstractView {
   constructor(time) {
     super();
     this.time = time;

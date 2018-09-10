@@ -1,19 +1,19 @@
 
-import IntroScreen from "../Screens/static-screens/Welcome";
-import Greetings from "../Screens/static-screens/greetings-screen";
+import IntroView from "../Screens/static-screens/Welcome";
+import GreetingsView from "../Screens/static-screens/greetings-view";
 
 import Router from "./router";
-import BackButton from "../Screens/header/back-button-component";
-import Rules from "../Screens/rules-screen";
+import BackButtonView from "../Screens/header/back-button";
+import RulesView from "../Screens/rules-view";
 import {RESULTS} from "../data/game";
-import StatsView from "../Screens/stats-screen";
-import LoaderView from "../Screens/static-screens/load-screen";
-import ErrorView from "../Screens/static-screens/error-screen";
+import StatsView from "../Screens/stats-view";
+import LoaderView from "../Screens/static-screens/load-view";
+import ErrorView from "../Screens/static-screens/error-view";
 
 
 export class WelcomeScreen {
   constructor() {
-    this.intro = new IntroScreen();
+    this.intro = new IntroView();
     this.intro.onClick = this.click.bind(this);
   }
 
@@ -28,7 +28,7 @@ export class WelcomeScreen {
 
 export class GreetingsScreen {
   constructor() {
-    this.greet = new Greetings();
+    this.greet = new GreetingsView();
     this.greet.onClick = this.click.bind(this);
   }
 
@@ -43,7 +43,7 @@ export class GreetingsScreen {
 
 export class HeaderPart {
   constructor(stopTimer = null) {
-    this.header = new BackButton();
+    this.header = new BackButtonView();
     this.stopTimer = stopTimer;
     this.header.onClick = this.click.bind(this);
   }
@@ -63,7 +63,7 @@ export class HeaderPart {
 export class RulesScreen {
   constructor() {
     this.header = new HeaderPart();
-    this.rules = new Rules();
+    this.rules = new RulesView();
 
     this.rules.onClick = this.click.bind(this);
 
