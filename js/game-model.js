@@ -9,8 +9,6 @@ import {
 } from "./data/game";
 import {pushResults} from "./data/scores";
 
-// onst getLevel = (state) => PIXEL_HUNTER[state.level];
-
 class QuestModel {
   constructor(playerName = ``, data) {
     this.playerName = playerName;
@@ -22,20 +20,20 @@ class QuestModel {
     return Object.freeze(this._state);
   }
 
-  getLevel(level) {
-    return this.data[level];
+  die() {
+    this._state = die(this._state);
   }
 
   hasNextLevel() {
     return setLevel(this._state.level + 1) > -1;
   }
 
-  nextLevel() {
-    this._state = changeLevel(this._state, this._state.level + 1);
+  getLevel(level) {
+    return this.data[level];
   }
 
-  die() {
-    this._state = die(this._state);
+  nextLevel() {
+    this._state = changeLevel(this._state, this._state.level + 1);
   }
 
   restart() {
