@@ -3,8 +3,11 @@ import {ErrorScreen, GreetingsScreen, LoaderScreen, RulesScreen, StatsScreen, We
 import QuestModel from "../game-model";
 import LevelScreen from "./level-screen";
 
+const OK_STATUS = 200;
+const REDIRECTION_STATUS = 300;
+
 const checkStatus = (response) => {
-  if (response.status >= 200 && response.status < 300) {
+  if (response.status >= OK_STATUS && response.status < REDIRECTION_STATUS) {
     return response;
   } else {
     throw new Error(`${response.status}: ${response.statusText}`);
