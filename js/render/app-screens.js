@@ -7,6 +7,8 @@ import BackButton from "../Screens/header/back-button-component";
 import Rules from "../Screens/rules-screen";
 import {RESULTS} from "../data/game";
 import StatsView from "../Screens/stats-screen";
+import LoaderView from "../Screens/static-screens/load-screen";
+import ErrorView from "../Screens/static-screens/error-screen";
 
 
 export class WelcomeScreen {
@@ -90,5 +92,33 @@ export class StatsScreen {
 
   get element() {
     return this.root;
+  }
+}
+
+export class LoaderScreen {
+  constructor() {
+    this.loader = new LoaderView();
+  }
+
+  get element() {
+    return this.loader.element;
+  }
+
+  nextScreen() {
+    Router.showWelcome();
+  }
+
+  error() {
+    Router.showError();
+  }
+}
+
+export class ErrorScreen {
+  constructor() {
+    this.error = new ErrorView();
+  }
+
+  get element() {
+    return this.error.element;
   }
 }

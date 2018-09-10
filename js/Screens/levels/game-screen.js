@@ -45,7 +45,7 @@ export default class LevelView extends AbstractView {
         img.height = resolution.height;
         it.appendChild(img);
       });
-      img.src = level.answers[i].img;
+      img.src = level.answers[i].image.url;
       img.alt = `Option ${i + 1}`;
     });
   }

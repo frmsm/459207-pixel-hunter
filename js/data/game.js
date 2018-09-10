@@ -5,49 +5,6 @@ export const INITIAL_STATE = Object.freeze({
   answers: [],
 });
 
-export const PIXEL_HUNTER = [
-  {
-    question: `Угадайте для каждого изображения фото или рисунок?`,
-    answers: [{img: `http://i.imgur.com/1KegWPz.jpg`, type: `photo`}, {img: `https://k32.kn3.net/5C7060EC5.jpg`, type: `paint`}],
-  },
-  {
-    question: `Угадай, фото или рисунок?`,
-    answers: [{img: `https://i.imgur.com/DiHM5Zb.jpg`, type: `photo`}]
-  },
-  {
-    question: `Найдите рисунок среди изображений`,
-    answers: [{img: `https://k42.kn3.net/CF42609C8.jpg`, type: true}, {img: `https://i.imgur.com/DiHM5Zb.jpg`, type: false}, {img: `http://i.imgur.com/DKR1HtB.jpg`, type: false}],
-  },
-  {
-    question: `Угадайте для каждого изображения фото или рисунок?`,
-    answers: [{img: `http://placehold.it/468x458`, type: `photo`}, {img: `http://placehold.it/468x458`, type: `paint`}],
-  },
-  {
-    question: `Угадай, фото или рисунок?`,
-    answers: [{img: `http://placehold.it/705x455`, type: `photo`}]
-  },
-  {
-    question: `Найдите рисунок среди изображений`,
-    answers: [{img: `http://placehold.it/304x455`, type: true}, {img: `http://placehold.it/304x455`, type: false}, {img: `http://placehold.it/304x455`, type: false}],
-  },
-  {
-    question: `Угадайте для каждого изображения фото или рисунок?`,
-    answers: [{img: `http://placehold.it/468x458`, type: `photo`}, {img: `http://placehold.it/468x458`, type: `paint`}],
-  },
-  {
-    question: `Угадай, фото или рисунок?`,
-    answers: [{img: `http://placehold.it/705x455`, type: `photo`}]
-  },
-  {
-    question: `Найдите рисунок среди изображений`,
-    answers: [{img: `http://placehold.it/304x455`, type: true}, {img: `http://placehold.it/304x455`, type: false}, {img: `http://placehold.it/304x455`, type: false}],
-  },
-  {
-    question: `Угадай, фото или рисунок?`,
-    answers: [{img: `http://placehold.it/705x455`, type: `photo`}]
-  },
-];
-
 export const RESULTS = [];
 
 export const ANSWERS_COUNT = 10;

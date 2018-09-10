@@ -1,6 +1,5 @@
 import {
   endTime,
-  PIXEL_HUNTER,
   tick,
   die,
   INITIAL_STATE,
@@ -10,16 +9,21 @@ import {
 } from "./data/game";
 import {pushResults} from "./data/scores";
 
-const getLevel = (state) => PIXEL_HUNTER[state.level];
+// onst getLevel = (state) => PIXEL_HUNTER[state.level];
 
 class QuestModel {
-  constructor(playerName = ``) {
+  constructor(playerName = ``, data) {
     this.playerName = playerName;
+    this.data = data;
     this.restart();
   }
 
   get state() {
     return Object.freeze(this._state);
+  }
+
+  getLevel(level) {
+    return this.data[level];
   }
 
   hasNextLevel() {
@@ -43,7 +47,7 @@ class QuestModel {
   }
 
   getCurrentLevel() {
-    return getLevel(this._state);
+    return this.getLevel(this._state.level);
   }
 
   tick() {

@@ -1,4 +1,4 @@
-import {ONE_SECOND, PIXEL_HUNTER} from "../data/game";
+import {ONE_SECOND} from "../data/game";
 import GameOne from "../Screens/levels/game-one-screen";
 import GameTwo from "../Screens/levels/game-two-screen";
 import GameThree from "../Screens/levels/game-three-screen";
@@ -74,13 +74,14 @@ export default class LevelScreen {
   }
 
   setGameType(state) {
-    const images = PIXEL_HUNTER[state.level].answers.length;
+    const level = this.model.getCurrentLevel();
+    const type = level.type;
     const gameTypes = {
-      1: GameTwo,
-      2: GameOne,
-      3: GameThree
+      'tinder-like': GameTwo,
+      'two-of-two': GameOne,
+      'one-of-three': GameThree
     };
-    return new gameTypes[images](PIXEL_HUNTER[state.level], state.answers);
+    return new gameTypes[type](level, state.answers);
   }
 
   exit() {
