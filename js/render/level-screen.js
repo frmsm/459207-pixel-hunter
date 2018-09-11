@@ -2,52 +2,35 @@ import {ONE_SECOND} from "../data/game";
 import GameOneView from "../Screens/levels/game-one-view";
 import GameTwoView from "../Screens/levels/game-two-view";
 import GameThreeView from "../Screens/levels/game-three-view";
-import GameTimer from "../Screens/header/time";
-import GameLives from "../Screens/header/live";
 import Router from "./router";
-import {HeaderPart} from "./app-screens";
 
 export default class LevelScreen {
   constructor(model) {
     this.model = model;
-
-    this.root = document.createElement(`div`);
-    this.back = new HeaderPart(()=>this.stopGame());
-    this.header = this.back.element;
-    this.timer = new GameTimer(this.model.state.time);
-    this.live = new GameLives(this.model.state);
-    this.header.appendChild(this.timer.element);
-    this.header.appendChild(this.live.element);
-    this.level = this.setGameType(this.model.state);
-    this.root.appendChild(this.header);
-    this.root.appendChild(this.level.element);
-
+    this.level = this.setGameType(this.model.getCurrentLevel(), this.model.state);
+    this.level.onAnswer = this.answer.bind(this);
     this._timeOut = null;
+    this.startTimer();
+  }
+
+  setGameType(level, state) {
+    const type = level.type;
+    const gameTypes = {
+      'tinder-like': GameTwoView,
+      'two-of-two': GameOneView,
+      'one-of-three': GameThreeView
+    };
+    return new gameTypes[type](level, state);
   }
 
   get element() {
-    return this.root;
-  }
-
-  updateHeader() {
-    const timer = new GameTimer(this.model.state.time);
-    const lives = new GameLives(this.model.state);
-
-    this.header.replaceChild(timer.element, this.timer.element);
-    this.header.replaceChild(lives.element, this.live.element);
-
-    this.timer = timer;
-    this.live = lives;
-  }
-
-  startGame() {
-    this.changeLevel();
+    return this.level.element;
   }
 
   startTimer() {
     this._timeOut = setInterval(()=> {
       this.model.tick();
-      this.updateTimer();
+      this.level.updateTimer(this.model.state.time);
       if (this.model.endTime()) {
         this.stopGame();
         this.model.die();
@@ -60,34 +43,8 @@ export default class LevelScreen {
     clearInterval(this._timeOut);
   }
 
-  updateTimer() {
-    const timer = new GameTimer(this.model.state.time);
-    this.header.replaceChild(timer.element, this.timer.element);
-    this.timer = timer;
-  }
-
   changeLevel() {
-    this.updateHeader();
-    const level = this.setGameType(this.model.state);
-    level.onAnswer = this.answer.bind(this);
-    this.changeContentView(level);
-    this.startTimer();
-  }
-
-  changeContentView(view) {
-    this.root.replaceChild(view.element, this.level.element);
-    this.level = view;
-  }
-
-  setGameType(state) {
-    const level = this.model.getCurrentLevel();
-    const type = level.type;
-    const gameTypes = {
-      'tinder-like': GameTwoView,
-      'two-of-two': GameOneView,
-      'one-of-three': GameThreeView
-    };
-    return new gameTypes[type](level, state.answers);
+    Router.showLevel(this.model);
   }
 
   exit() {

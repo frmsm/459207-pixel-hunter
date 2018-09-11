@@ -27,7 +27,7 @@ const checkStatus = (response) => {
 
 let gameData;
 
-const updateScreen = (container, ...view) => {
+export const updateScreen = (container, ...view) => {
   container.innerHTML = ``;
   [...view].forEach((it) => {
     container.appendChild(it);
@@ -46,9 +46,12 @@ export default class Router {
   }
 
   static showGame(playerName) {
-    const game = new LevelScreen(new QuestModel(playerName, gameData));
+    Router.showLevel(new QuestModel(playerName, gameData));
+  }
+
+  static showLevel(model) {
+    const game = new LevelScreen(model);
     updateScreen(main, game.element);
-    game.startGame();
   }
 
   static showRules() {

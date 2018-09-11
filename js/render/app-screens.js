@@ -10,7 +10,6 @@ import StatsView from "../Screens/stats-view";
 import LoaderView from "../Screens/static-screens/load-view";
 import ErrorView from "../Screens/static-screens/error-view";
 
-
 export class WelcomeScreen {
   constructor() {
     this.intro = new IntroView();
@@ -41,7 +40,7 @@ export class GreetingsScreen {
   }
 }
 
-export class HeaderPart {
+export class BackButton {
   constructor(stopTimer = null) {
     this.header = new BackButtonView();
     this.stopTimer = stopTimer;
@@ -62,18 +61,13 @@ export class HeaderPart {
 
 export class RulesScreen {
   constructor() {
-    this.header = new HeaderPart();
     this.rules = new RulesView();
 
     this.rules.onClick = this.click.bind(this);
-
-    this.root = document.createElement(`div`);
-    this.root.appendChild(this.header.element);
-    this.root.appendChild(this.rules.element);
   }
 
   get element() {
-    return this.root;
+    return this.rules.element;
   }
 
   click(name) {
@@ -84,14 +78,11 @@ export class RulesScreen {
 export class StatsScreen {
   constructor() {
     this.stats = new StatsView(RESULTS);
-    this.header = new HeaderPart();
-    this.root = document.createElement(`div`);
-    this.root.appendChild(this.header.element);
-    this.root.appendChild(this.stats.element);
+
   }
 
   get element() {
-    return this.root;
+    return this.stats.element;
   }
 }
 

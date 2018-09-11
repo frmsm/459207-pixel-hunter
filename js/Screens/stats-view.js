@@ -1,10 +1,12 @@
 import {curStats} from "../current-stats";
 import AbstractView from "./Abstract";
+import {BackButton} from "../render/app-screens";
 
 export default class StatsView extends AbstractView {
   constructor(results) {
     super();
     this.results = results;
+    this.backBtn = new BackButton();
   }
 
   renderScoreType(score, count, type) {
@@ -40,8 +42,9 @@ export default class StatsView extends AbstractView {
 
   resultsRender(result) {
     const newResult = [...result];
-    return `${newResult.reverse().map((it, i)=>{
-      return `<tr>
+    return `
+    ${newResult.reverse().map((it, i)=>{
+    return `<tr>
     <td class="result__number">${++i}.</td>
       <td colspan="2">
         ${curStats(it.statistic.answers)}   
@@ -57,8 +60,8 @@ export default class StatsView extends AbstractView {
         <td colspan="5" class="result__total  result__total--final">${it.score.total}</td>
       </tr>`}
     </tr>`;
-    }).join(``)
-    }`;
+  }).join(``)
+}`;
   }
 
   get scoreType() {
@@ -66,11 +69,17 @@ export default class StatsView extends AbstractView {
   }
 
   get template() {
-    return `<section class="result">
+    return `<header class="header"></header>
+    <section class="result">
     <h2 class="result__title">${this.scoreType ? `FAIL` : `Победа`}</h2>
       <table class="result__table">
         ${this.resultsRender(this.results)}
       </table>
     </section>`;
+  }
+
+  bind() {
+    const header = this.element.querySelector(`.header`);
+    header.appendChild(this.backBtn.element);
   }
 }

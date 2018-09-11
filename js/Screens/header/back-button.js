@@ -3,7 +3,7 @@ import AbstractView from "../Abstract";
 export default class BackButtonView extends AbstractView {
 
   get template() {
-    return `<header class="header">
+    return `
       <button class="back">
       <span class="visually-hidden">Вернуться к началу</span>
       <svg class="icon" width="45" height="45" viewBox="0 0 45 45" fill="#000000">
@@ -13,7 +13,7 @@ export default class BackButtonView extends AbstractView {
         <use xlink:href="img/sprite.svg#logo-small"></use>
       </svg>
     </button>
-  </header>`;
+ `;
   }
 
   onClick() {}

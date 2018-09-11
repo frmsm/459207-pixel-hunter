@@ -1,11 +1,12 @@
 import LevelView from "./game-view";
 
 export default class GameTwoView extends LevelView {
-  constructor(level, answers) {
-    super(level, answers);
+  constructor(level, state) {
+    const labelInput = true;
+    super(level, state, labelInput);
     this.level = level;
-    this.answers = answers;
-    this.labelInput = true;
+    this.answers = state.answers;
+    this.addHeader();
   }
 
   bind() {

@@ -1,12 +1,16 @@
 import AbstractView from "./Abstract";
+import {BackButton} from "../render/app-screens";
 
 export default class RulesView extends AbstractView {
   constructor() {
     super();
+    this.backBtn = new BackButton();
   }
 
   get template() {
-    return `<section class="rules">
+    return `
+    <header class="header"></header>
+    <section class="rules">
     <h2 class="rules__title">Правила</h2>
     <ul class="rules__description">
       <li>Угадай 10 раз для каждого изображения фото
@@ -30,6 +34,8 @@ export default class RulesView extends AbstractView {
     const MIN_NAME_LENGTH = 4;
 
     const inputName = this.element.querySelector(`.rules__input`);
+    const header = this.element.querySelector(`.header`);
+    header.appendChild(this.backBtn.element);
 
     const goButton = this.element.querySelector(`.rules__button`);
     goButton.addEventListener(`click`, (e)=>{

@@ -1,19 +1,27 @@
 import {resize} from "../../data/resize";
 import AbstractView from "../Abstract";
 import {curStats} from "../../current-stats";
+import {BackButton} from "../../render/app-screens";
+import GameTimer from "../header/time";
+import GameLives from "../header/live";
 
 export default class LevelView extends AbstractView {
-  constructor(level, answers) {
+  constructor(level, state, labelInput) {
     super();
-    this.answers = answers;
+    this.answers = state.answers;
     this.level = level;
-    this.SCREEN_TYPE = `one-of-three`;
-    this.labelInput = true;
+    this.labelInput = labelInput;
+
+    this.backBtn = new BackButton();
+    this.timer = new GameTimer(state.time);
+    this.lives = new GameLives(state.lives);
+
+    this.header = this.element.querySelector(`.header`);
   }
 
   get template() {
-    return `
-<section class="game">
+    return `<header class="header"></header>
+    <section class="game">
     <p class="game__task">${this.level.question}</p>
     <form class="game__content">
     ${this.level.answers.map((it, i) => {
@@ -56,9 +64,21 @@ export default class LevelView extends AbstractView {
 
   onAnswer() {}
 
+  updateTimer(time) {
+    const timer = new GameTimer(time);
+    this.header.replaceChild(timer.element, this.timer.element);
+    this.timer = timer;
+  }
+
   getQuestionValue(question) {
     return [...question].find((q) => {
       return q.type === `radio` && q.checked;
     });
+  }
+
+  addHeader() {
+    this.header.appendChild(this.backBtn.element);
+    this.header.appendChild(this.timer.element);
+    this.header.appendChild(this.lives.element);
   }
 }
