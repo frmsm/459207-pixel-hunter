@@ -28,6 +28,10 @@ class QuestModel {
     return setLevel(this._state.level + 1) > -1;
   }
 
+  isEndGame() {
+    return !this.hasNextLevel() || this.isDead();
+  }
+
   getLevel(level) {
     return this.data[level];
   }
@@ -46,6 +50,10 @@ class QuestModel {
 
   getCurrentLevel() {
     return this.getLevel(this._state.level);
+  }
+
+  shouldLevelChange() {
+
   }
 
   tick() {

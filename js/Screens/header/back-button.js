@@ -16,6 +16,8 @@ export default class BackButtonView extends AbstractView {
  `;
   }
 
+  onHelp() {}
+
   onClick() {}
 
   bind() {

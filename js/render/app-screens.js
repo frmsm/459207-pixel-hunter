@@ -42,13 +42,13 @@ export class GreetingsScreen {
 
 export class BackButton {
   constructor(stopTimer = null) {
-    this.header = new BackButtonView();
+    this.button = new BackButtonView();
     this.stopTimer = stopTimer;
-    this.header.onClick = this.click.bind(this);
+    this.button.onClick = this.click.bind(this);
   }
 
   get element() {
-    return this.header.element.firstElementChild;
+    return this.button.element;
   }
 
   click() {

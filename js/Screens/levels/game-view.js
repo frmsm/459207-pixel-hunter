@@ -6,13 +6,14 @@ import GameTimer from "../header/time";
 import GameLives from "../header/live";
 
 export default class LevelView extends AbstractView {
-  constructor(level, state, labelInput) {
+  constructor(level, state, stopGame, labelInput) {
     super();
     this.answers = state.answers;
     this.level = level;
     this.labelInput = labelInput;
+    this.stopGame = stopGame;
 
-    this.backBtn = new BackButton();
+    this.backBtn = new BackButton(this.stopGame);
     this.timer = new GameTimer(state.time);
     this.lives = new GameLives(state.lives);
 
