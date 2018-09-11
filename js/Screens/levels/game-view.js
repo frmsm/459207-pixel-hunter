@@ -8,6 +8,7 @@ export default class LevelView extends AbstractView {
     this.answers = answers;
     this.level = level;
     this.SCREEN_TYPE = `one-of-three`;
+    this.labelInput = true;
   }
 
   get template() {
@@ -16,18 +17,17 @@ export default class LevelView extends AbstractView {
     <p class="game__task">${this.level.question}</p>
     <form class="game__content">
     ${this.level.answers.map((it, i) => {
-    return this.level.type !== this.SCREEN_TYPE
-      ? `<div class="game__option">      
-              <label class="game__answer game__answer--photo">
+    return `<div class="game__option">
+     ${this.labelInput
+    ? `<label class="game__answer game__answer--photo">
                 <input class="visually-hidden" name="question${i + 1}" type="radio" value="photo">
                 <span>Фото</span>
               </label>
               <label class="game__answer game__answer--paint">
                 <input class="visually-hidden" name="question${i + 1}" type="radio" value="paint">
                 <span>Рисунок</span>
-              </label>
-            </div>`
-      : `<div class="game__option">            
+              </label>`
+    : ``}            
          </div>`;
   }).join(``)}
   </form>

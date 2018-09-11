@@ -5,6 +5,7 @@ export default class GameThreeView extends LevelView {
     super(level, answers);
     this.level = level;
     this.answers = answers;
+    this.labelInput = false;
   }
 
   bind() {

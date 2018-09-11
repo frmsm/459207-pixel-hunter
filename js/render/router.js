@@ -6,6 +6,17 @@ import LevelScreen from "./level-screen";
 const OK_STATUS = 200;
 const REDIRECTION_STATUS = 300;
 
+const loadData = (view) => {
+  fetch(`https://es.dump.academy/pixel-hunter/questions`)
+    .then(checkStatus)
+    .then((response) => response.json())
+    .then((data) => {
+      gameData = data;
+    })
+    .then(() => view.nextScreen())
+    .catch(() => view.error());
+};
+
 const checkStatus = (response) => {
   if (response.status >= OK_STATUS && response.status < REDIRECTION_STATUS) {
     return response;
@@ -58,13 +69,6 @@ export default class Router {
   static showLoader() {
     const loader = new LoaderScreen();
     updateScreen(main, loader.element);
-    fetch(`https://es.dump.academy/pixel-hunter/questions`)
-      .then(checkStatus)
-      .then((response) => response.json())
-      .then((data) => {
-        gameData = data;
-      })
-      .then(() => loader.nextScreen())
-      .catch(() => loader.error());
+    loadData(loader);
   }
 }

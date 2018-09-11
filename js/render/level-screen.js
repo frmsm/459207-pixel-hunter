@@ -1,4 +1,4 @@
-import {HALF_SECOND, ONE_SECOND, TIME_LEFT} from "../data/game";
+import {ONE_SECOND} from "../data/game";
 import GameOneView from "../Screens/levels/game-one-view";
 import GameTwoView from "../Screens/levels/game-two-view";
 import GameThreeView from "../Screens/levels/game-three-view";
@@ -38,8 +38,6 @@ export default class LevelScreen {
 
     this.timer = timer;
     this.live = lives;
-
-    this.blinkTimer();
   }
 
   startGame() {
@@ -47,30 +45,25 @@ export default class LevelScreen {
   }
 
   startTimer() {
-    this._timeOut = setTimeout(() => {
+    this._timeOut = setInterval(()=> {
       this.model.tick();
-      this.updateHeader();
+      this.updateTimer();
       if (this.model.endTime()) {
         this.stopGame();
         this.model.die();
         this.shouldLevelChange();
-      } else {
-        this.startTimer();
       }
     }, ONE_SECOND);
   }
 
-  blinkTimer() {
-    if (this.model.state.time <= TIME_LEFT) {
-      this.timer.element.style.color = `red`;
-      setTimeout(()=>{
-        this.timer.element.style.color = `black`;
-      }, HALF_SECOND);
-    }
-  }
-
   stopGame() {
     clearInterval(this._timeOut);
+  }
+
+  updateTimer() {
+    const timer = new GameTimer(this.model.state.time);
+    this.header.replaceChild(timer.element, this.timer.element);
+    this.timer = timer;
   }
 
   changeLevel() {
