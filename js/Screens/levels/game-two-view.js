@@ -15,6 +15,7 @@ export default class GameTwoView extends LevelView {
 
     const gameContent = this.element.querySelector(`.game__content`);
     gameContent.classList.add(`game__content--wide`);
+    this.showAnswers();
 
     const questionOne = this.element.querySelectorAll(`[name=question1]`);
     const answers = this.level.answers;

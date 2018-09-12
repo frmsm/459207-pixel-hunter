@@ -33,6 +33,7 @@ export default class GameThreeView extends LevelView {
 
     const gameContent = this.element.querySelector(`.game__content`);
     gameContent.classList.add(`game__content--triple`);
+    this.showAnswers();
 
     gameContent.addEventListener(`click`, (e) => {
       const gameOption = e.target.closest(`.game__option`);

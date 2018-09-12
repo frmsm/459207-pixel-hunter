@@ -14,6 +14,7 @@ export default class GameOneView extends LevelView {
     this.setContentStyle(images, this.level);
 
     const gameContent = this.element.querySelector(`.game__content`);
+    this.showAnswers();
 
     const questionOne = this.element.querySelectorAll(`[name=question1]`);
     const questionTwo = this.element.querySelectorAll(`[name=question2]`);

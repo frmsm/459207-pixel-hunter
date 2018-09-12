@@ -1,6 +1,9 @@
 import {curStats} from "../current-stats";
 import AbstractView from "./Abstract";
 import BackButton from "../constrollers/back-button";
+import {RIGHT_ANSWER_MULTIPLIER} from "../data/game";
+
+const TYPE_MULTIPLIER = 50;
 
 export default class StatsView extends AbstractView {
   constructor(results) {
@@ -12,7 +15,7 @@ export default class StatsView extends AbstractView {
   renderScoreType(score, count, type) {
     if (type === `answer`) {
       return `</td>
-        <td class="result__points">× 100</td>
+        <td class="result__points">× ${RIGHT_ANSWER_MULTIPLIER}</td>
         <td class="result__total">${score}</td>
       </tr>`;
     }
@@ -34,7 +37,7 @@ export default class StatsView extends AbstractView {
       <td></td>
       <td class="result__extra">${scoreType[type]}</td>
       <td class="result__extra">${count} <span class="stats__result ${styleType[type]}"></span></td>
-      <td class="result__points">× 50</td>
+      <td class="result__points">× ${TYPE_MULTIPLIER}</td>
       <td class="result__total">${score}</td>
     </tr>`
       : ``;

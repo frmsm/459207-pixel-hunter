@@ -1,4 +1,4 @@
-import {images} from "./constrollers/router";
+import {images} from "../constrollers/router";
 
 export const getImagesArray = (data) => {
   let imageData = new Set();

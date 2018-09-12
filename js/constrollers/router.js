@@ -7,7 +7,7 @@ import RulesScreen from "./rules";
 import StatsScreen from "./stats";
 import GameModel from "../game-model";
 import Level from "./level";
-import {getImagesArray} from "../load-images";
+import {getImagesArray} from "../data/load-images";
 
 const OK_STATUS = 200;
 const REDIRECTION_STATUS = 300;

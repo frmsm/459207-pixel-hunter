@@ -4,6 +4,7 @@ import {curStats} from "../../current-stats";
 import BackButton from "../../constrollers/back-button";
 import GameTimer from "../header/time";
 import GameLives from "../header/live";
+import {DEBUG} from "../../data/game";
 
 export default class LevelView extends AbstractView {
   constructor(level, state, images, stopGame, labelInput) {
@@ -34,7 +35,7 @@ export default class LevelView extends AbstractView {
                 <span>Фото</span>
               </label>
               <label class="game__answer game__answer--paint">
-                <input class="visually-hidden" name="question${i + 1}" type="radio" value="paint">
+                <input class="visually-hidden" name="question${i + 1}" type="radio" value="painting">
                 <span>Рисунок</span>
               </label>`
     : ``}            
@@ -79,5 +80,17 @@ export default class LevelView extends AbstractView {
     this.header.appendChild(this.backBtn.element);
     this.header.appendChild(this.timer.element);
     this.header.appendChild(this.lives.element);
+  }
+
+  showAnswers() {
+    if (DEBUG) {
+      const question = this.element.querySelector(`.game__task`);
+      const rightAnswer = document.createElement(`span`);
+      rightAnswer.style.color = `red`;
+      for (let answer of this.level.answers) {
+        rightAnswer.textContent = rightAnswer.textContent + ` ` + answer.type;
+      }
+      question.appendChild(rightAnswer);
+    }
   }
 }
