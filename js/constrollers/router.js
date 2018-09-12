@@ -1,5 +1,4 @@
 import {main} from "../main";
-// import {ErrorScreen, GreetingsScreen, LoaderScreen, RulesScreen, StatsScreen, WelcomeScreen} from "./app-screens";
 import ErrorScreen from "./error";
 import WelcomeScreen from "./welcome";
 import GreetingsScreen from "./greetings";
@@ -8,6 +7,7 @@ import RulesScreen from "./rules";
 import StatsScreen from "./stats";
 import GameModel from "../game-model";
 import Level from "./level";
+import {getImagesArray} from "../load-images";
 
 const OK_STATUS = 200;
 const REDIRECTION_STATUS = 300;
@@ -18,7 +18,9 @@ const loadData = (view) => {
     .then((response) => response.json())
     .then((data) => {
       gameData = data;
+      return getImagesArray(data);
     })
+    .then((arr)=>Promise.all(arr))
     .then(() => view.nextScreen())
     .catch(() => view.error());
 };

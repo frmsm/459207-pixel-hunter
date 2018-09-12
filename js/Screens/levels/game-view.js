@@ -4,6 +4,7 @@ import {curStats} from "../../current-stats";
 import BackButton from "../../constrollers/back-button";
 import GameTimer from "../header/time";
 import GameLives from "../header/live";
+import {IMAGES} from "../../data/game";
 
 export default class LevelView extends AbstractView {
   constructor(level, state, stopGame, labelInput) {
@@ -46,20 +47,17 @@ export default class LevelView extends AbstractView {
 
   setContentStyle(images, level) {
     [...images].forEach((it, i) => {
-      const img = new Image();
-      img.addEventListener(`load`, function () {
-        const naturalSize = {width: img.width, height: img.height};
-        const frame = {
-          width: level.answers[i].image.width,
-          height: level.answers[i].image.height
-        };
-        const resolution = resize(frame, naturalSize);
-        img.width = resolution.width;
-        img.height = resolution.height;
-        it.appendChild(img);
-      });
-      img.src = level.answers[i].image.url;
+      const img = IMAGES[level.answers[i].image.url];
       img.alt = `Option ${i + 1}`;
+      const naturalSize = {width: img.width, height: img.height};
+      const frame = {
+        width: level.answers[i].image.width,
+        height: level.answers[i].image.height
+      };
+      const resolution = resize(frame, naturalSize);
+      img.width = resolution.width;
+      img.height = resolution.height;
+      it.appendChild(img);
     });
   }
 
