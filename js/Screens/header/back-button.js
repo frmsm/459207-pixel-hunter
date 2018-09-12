@@ -1,11 +1,6 @@
 import AbstractView from "../Abstract";
-// import {gameHeader} from "../game-header";
 
-export default class BackButton extends AbstractView {
-  constructor(state = null) {
-    super();
-    this.state = state;
-  }
+export default class BackButtonView extends AbstractView {
 
   get template() {
     return `
@@ -17,7 +12,8 @@ export default class BackButton extends AbstractView {
       <svg class="icon" width="101" height="44" viewBox="0 0 101 44" fill="#000000">
         <use xlink:href="img/sprite.svg#logo-small"></use>
       </svg>
-    </button>`;
+    </button>
+ `;
   }
 
   onClick() {}
@@ -28,4 +24,3 @@ export default class BackButton extends AbstractView {
   }
 }
 
-//   ${gameHeader(this.state)}

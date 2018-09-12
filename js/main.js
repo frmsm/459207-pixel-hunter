@@ -1,10 +1,9 @@
-
-import {renderWelcome} from "./screen-render";
+import Router from "./constrollers/router";
 
 export const main = document.getElementById(`main`);
 
 const startGame = () => {
-  renderWelcome();
+  Router.showLoader();
 };
 
 startGame();

@@ -1,18 +1,20 @@
-import LevelView from "./game-screen";
+import LevelView from "./game-view";
 
-export default class GameOne extends LevelView {
-  constructor(level, answers) {
-    super(level, answers);
+export default class GameOneView extends LevelView {
+  constructor(level, state, images, stopGame) {
+    const labelInput = true;
+    super(level, state, images, stopGame, labelInput);
     this.level = level;
-    this.answers = answers;
-    this.frame = {width: 468, height: 450};
+    this.answers = state.answers;
+    this.addHeader();
   }
 
   bind() {
     const images = this.element.querySelectorAll(`.game__option`);
-    this.setContentStyle(images, this.level, this.frame);
+    this.setContentStyle(images, this.level);
 
     const gameContent = this.element.querySelector(`.game__content`);
+    this.showAnswers();
 
     const questionOne = this.element.querySelectorAll(`[name=question1]`);
     const questionTwo = this.element.querySelectorAll(`[name=question2]`);
