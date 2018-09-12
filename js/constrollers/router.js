@@ -32,6 +32,7 @@ const checkStatus = (response) => {
   }
 };
 
+
 let gameData;
 export let images = {};
 
