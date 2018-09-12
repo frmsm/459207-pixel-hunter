@@ -20,7 +20,7 @@ const loadData = (view) => {
       gameData = data;
       return getImagesArray(data);
     })
-    .then((arr)=>Promise.all(arr))
+    .then((promises)=>Promise.all(promises))
     .then(() => view.nextScreen())
     .catch(() => view.error());
 };
