@@ -14,8 +14,9 @@ export default class BackButton {
 
   click() {
     if (this.stopTimer) {
-      this.stopTimer();
+      Router.showModal(this.stopTimer);
+    } else {
+      Router.showGreetings();
     }
-    Router.showGreetings();
   }
 }

@@ -8,6 +8,7 @@ import StatsScreen from "./stats";
 import GameModel from "../game-model";
 import Level from "./level";
 import {getImagesArray} from "../data/load-images";
+import ModalScreen from "./modal";
 
 const OK_STATUS = 200;
 const REDIRECTION_STATUS = 300;
@@ -76,6 +77,11 @@ export default class Router {
   static showError() {
     const error = new ErrorScreen();
     updateScreen(main, error.element);
+  }
+
+  static showModal(stopGame) {
+    const modal = new ModalScreen(stopGame);
+    main.appendChild(modal.element);
   }
 
   static showLoader() {
