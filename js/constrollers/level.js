@@ -4,7 +4,7 @@ import GameTwoView from "../Screens/levels/game-two-view";
 import GameThreeView from "../Screens/levels/game-three-view";
 import Router from "./router";
 
-export default class LevelScreen {
+export default class Level {
   constructor(model) {
     this.model = model;
     this.level = this.setGameType(this.model.getCurrentLevel(), this.model.state, ()=>this.stopGame());
@@ -34,7 +34,7 @@ export default class LevelScreen {
       if (this.model.endTime()) {
         this.stopGame();
         this.model.die();
-        this.shouldLevelChange();
+        this.continueGame();
       }
     }, ONE_SECOND);
   }

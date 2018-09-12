@@ -1,4 +1,4 @@
-import Router from "./render/router";
+import Router from "./constrollers/router";
 
 export const main = document.getElementById(`main`);
 

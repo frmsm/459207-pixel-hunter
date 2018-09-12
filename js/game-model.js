@@ -9,7 +9,7 @@ import {
 } from "./data/game";
 import {pushResults} from "./data/scores";
 
-class QuestModel {
+export default class GameModel {
   constructor(playerName = ``, data) {
     this.playerName = playerName;
     this.data = data;
@@ -52,10 +52,6 @@ class QuestModel {
     return this.getLevel(this._state.level);
   }
 
-  shouldLevelChange() {
-
-  }
-
   tick() {
     this._state = tick(this._state);
   }
@@ -72,5 +68,3 @@ class QuestModel {
     pushResults(this._state);
   }
 }
-
-export default QuestModel;

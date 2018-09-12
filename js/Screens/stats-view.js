@@ -1,6 +1,6 @@
 import {curStats} from "../current-stats";
 import AbstractView from "./Abstract";
-import {BackButton} from "../render/app-screens";
+import BackButton from "../constrollers/back-button";
 
 export default class StatsView extends AbstractView {
   constructor(results) {

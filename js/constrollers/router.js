@@ -1,7 +1,13 @@
 import {main} from "../main";
-import {ErrorScreen, GreetingsScreen, LoaderScreen, RulesScreen, StatsScreen, WelcomeScreen} from "./app-screens";
-import QuestModel from "../game-model";
-import LevelScreen from "./level-screen";
+// import {ErrorScreen, GreetingsScreen, LoaderScreen, RulesScreen, StatsScreen, WelcomeScreen} from "./app-screens";
+import ErrorScreen from "./error";
+import WelcomeScreen from "./welcome";
+import GreetingsScreen from "./greetings";
+import LoaderScreen from "./loader";
+import RulesScreen from "./rules";
+import StatsScreen from "./stats";
+import GameModel from "../game-model";
+import Level from "./level";
 
 const OK_STATUS = 200;
 const REDIRECTION_STATUS = 300;
@@ -46,11 +52,11 @@ export default class Router {
   }
 
   static showGame(playerName) {
-    Router.showLevel(new QuestModel(playerName, gameData));
+    Router.showLevel(new GameModel(playerName, gameData));
   }
 
   static showLevel(model) {
-    const game = new LevelScreen(model);
+    const game = new Level(model);
     updateScreen(main, game.element);
   }
 
