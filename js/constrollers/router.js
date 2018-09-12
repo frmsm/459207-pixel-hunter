@@ -13,17 +13,15 @@ import ModalScreen from "./modal";
 const OK_STATUS = 200;
 const REDIRECTION_STATUS = 300;
 
-const loadData = (view) => {
-  fetch(`https://es.dump.academy/pixel-hunter/questions`)
+const loadData = (url) => {
+  return fetch(url)
     .then(checkStatus)
     .then((response) => response.json())
     .then((data) => {
       gameData = data;
       return getImagesArray(data);
     })
-    .then((promises)=>Promise.all(promises))
-    .then(() => view.nextScreen())
-    .catch(() => view.error());
+    .then((promises)=>Promise.all(promises));
 };
 
 const checkStatus = (response) => {
@@ -87,6 +85,8 @@ export default class Router {
   static showLoader() {
     const loader = new LoaderScreen();
     updateScreen(main, loader.element);
-    loadData(loader);
+    loadData(`https://es.dump.academy/pixel-hunter/questions`)
+      .then(loader.nextScreen)
+      .catch(loader.onError);
   }
 }

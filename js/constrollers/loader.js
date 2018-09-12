@@ -14,7 +14,7 @@ export default class LoaderScreen {
     Router.showWelcome();
   }
 
-  error() {
+  onError() {
     Router.showError();
   }
 }
