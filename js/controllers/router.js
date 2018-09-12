@@ -9,32 +9,11 @@ import GameModel from "../game-model";
 import Level from "./level";
 import {getImagesArray} from "../data/load-images";
 import ModalScreen from "./modal";
-
-const OK_STATUS = 200;
-const REDIRECTION_STATUS = 300;
-
-const loadData = (url) => {
-  return fetch(url)
-    .then(checkStatus)
-    .then((response) => response.json())
-    .then((data) => {
-      gameData = data;
-      return getImagesArray(data);
-    })
-    .then((promises)=>Promise.all(promises));
-};
-
-const checkStatus = (response) => {
-  if (response.status >= OK_STATUS && response.status < REDIRECTION_STATUS) {
-    return response;
-  } else {
-    throw new Error(`${response.status}: ${response.statusText}`);
-  }
-};
-
+import Loader from "../data/loader";
+import {pushResults} from "../data/scores";
 
 let gameData;
-export let images = {};
+let images = {};
 
 export const updateScreen = (container, ...view) => {
   container.innerHTML = ``;
@@ -68,9 +47,17 @@ export default class Router {
     updateScreen(main, rules.element);
   }
 
-  static showStats() {
-    const stats = new StatsScreen();
-    updateScreen(main, stats.element);
+  static showStats(model) {
+    Loader.saveResults(model.state, model.playerName)
+      .then(() => Loader.loadResults(model.playerName))
+      .then((data) => {
+        return pushResults(data);
+      })
+      .then((data)=>{
+        const stats = new StatsScreen(data);
+        updateScreen(main, stats.element);
+      })
+      .catch(Router.showError);
   }
 
   static showError() {
@@ -86,8 +73,13 @@ export default class Router {
   static showLoader() {
     const loader = new LoaderScreen();
     updateScreen(main, loader.element);
-    loadData(`https://es.dump.academy/pixel-hunter/questions`)
-      .then(loader.nextScreen)
+    Loader.loadData()
+      .then((data)=>{
+        gameData = data;
+        return getImagesArray(data, images);
+      })
+      .then((promises)=>Promise.all(promises))
+      .then(()=>Router.showWelcome())
       .catch(loader.onError);
   }
 }

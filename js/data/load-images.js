@@ -1,6 +1,4 @@
-import {images} from "../constrollers/router";
-
-export const getImagesArray = (data) => {
+export const getImagesArray = (data, images) => {
   let imageData = new Set();
   for (let img of data) {
     for (let answer of img.answers) {
@@ -10,12 +8,12 @@ export const getImagesArray = (data) => {
   }
   let arr = [];
   for (let img of [...imageData]) {
-    arr = [...arr, loadImage(img)];
+    arr = [...arr, loadImage(img, images)];
   }
   return arr;
 };
 
-const loadImage = (url) => {
+const loadImage = (url, images) => {
   return new Promise((resolve, reject) => {
     let img = new Image();
     img.addEventListener(`load`, () => resolve(images[url] = img));

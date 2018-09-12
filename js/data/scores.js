@@ -2,8 +2,7 @@ import {
   FAST_ANSWER_MULTIPLIER,
   FAST_ANSWER_TIME,
   GAME_FAIL, LIVES_MULTIPLIER,
-  NO_LIVES,
-  RESULTS, RIGHT_ANSWER, RIGHT_ANSWER_MULTIPLIER, SLOW_ANSWER_MULTIPLIER,
+  NO_LIVES, RIGHT_ANSWER, RIGHT_ANSWER_MULTIPLIER, SLOW_ANSWER_MULTIPLIER,
   SLOW_ANSWER_TIME,
   WRONG_ANSWER
 } from "./game";
@@ -31,7 +30,7 @@ export const countAnswers = (state) => {
       answerStatistic.answer += RIGHT_ANSWER;
       answerStatistic.fast += RIGHT_ANSWER;
     }
-    if (answer < SLOW_ANSWER_TIME && answer > WRONG_ANSWER) {
+    if (answer <= SLOW_ANSWER_TIME && answer > WRONG_ANSWER) {
       answerStatistic.answer += RIGHT_ANSWER;
       answerStatistic.slow += RIGHT_ANSWER;
     }
@@ -58,9 +57,13 @@ export const countScores = (statistic) => {
 };
 
 export const pushResults = (state) => {
-  const statistic = countAnswers(state);
-  const score = countScores(statistic);
-  RESULTS.push({statistic, score});
+  let results = [];
+  for (let answers of state) {
+    const statistic = countAnswers(answers);
+    const score = countScores(statistic);
+    results.push({statistic, score});
+  }
+  return results;
 };
 
 

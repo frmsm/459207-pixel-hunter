@@ -7,11 +7,9 @@ export const INITIAL_STATE = Object.freeze({
 
 export const DEBUG = true;
 
-export const RESULTS = [];
-
 export const ANSWERS_COUNT = 10;
 export const FAST_ANSWER_TIME = 20;
-export const SLOW_ANSWER_TIME = 10;
+export const SLOW_ANSWER_TIME = 9;
 const MAX_LEVEL = 9;
 export const WRONG_ANSWER = -1;
 export const ONE_SECOND = 1000;
@@ -31,7 +29,7 @@ export const setLevel = (lvl) => {
   }
 
   if (lvl > MAX_LEVEL) {
-    return -1;
+    return GAME_FAIL;
   }
 
   if (lvl < 0) {

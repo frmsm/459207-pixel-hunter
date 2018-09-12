@@ -1,6 +1,6 @@
 import {curStats} from "../current-stats";
 import AbstractView from "./Abstract";
-import BackButton from "../constrollers/back-button";
+import BackButton from "../controllers/back-button";
 import {RIGHT_ANSWER_MULTIPLIER} from "../data/game";
 
 const TYPE_MULTIPLIER = 50;
