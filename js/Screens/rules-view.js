@@ -1,5 +1,5 @@
 import AbstractView from "./Abstract";
-import BackButton from "../constrollers/back-button";
+import BackButton from "../controllers/back-button";
 
 export default class RulesView extends AbstractView {
   constructor() {

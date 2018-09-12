@@ -49,8 +49,7 @@ export default class Level {
   }
 
   exit() {
-    this.model.updateResults();
-    Router.showStats();
+    Router.showStats(this.model);
   }
 
   continueGame() {
