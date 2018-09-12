@@ -5,7 +5,6 @@ export const INITIAL_STATE = Object.freeze({
   answers: [],
 });
 
-export let GAME_DATA;
 export let IMAGES = {};
 
 export const RESULTS = [];
