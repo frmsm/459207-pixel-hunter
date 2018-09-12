@@ -4,15 +4,15 @@ import {curStats} from "../../current-stats";
 import BackButton from "../../constrollers/back-button";
 import GameTimer from "../header/time";
 import GameLives from "../header/live";
-import {IMAGES} from "../../data/game";
 
 export default class LevelView extends AbstractView {
-  constructor(level, state, stopGame, labelInput) {
+  constructor(level, state, images, stopGame, labelInput) {
     super();
     this.answers = state.answers;
     this.level = level;
     this.labelInput = labelInput;
     this.stopGame = stopGame;
+    this.images = images;
 
     this.backBtn = new BackButton(this.stopGame);
     this.timer = new GameTimer(state.time);
@@ -47,7 +47,7 @@ export default class LevelView extends AbstractView {
 
   setContentStyle(images, level) {
     [...images].forEach((it, i) => {
-      const img = IMAGES[level.answers[i].image.url];
+      const img = this.images[level.answers[i].image.url];
       img.alt = `Option ${i + 1}`;
       const naturalSize = {width: img.width, height: img.height};
       const frame = {

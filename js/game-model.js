@@ -10,9 +10,10 @@ import {
 import {pushResults} from "./data/scores";
 
 export default class GameModel {
-  constructor(playerName = ``, data) {
+  constructor(playerName = ``, data, images) {
     this.playerName = playerName;
     this.data = data;
+    this.images = images;
     this.restart();
   }
 

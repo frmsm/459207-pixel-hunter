@@ -1,9 +1,9 @@
 import LevelView from "./game-view";
 
 export default class GameOneView extends LevelView {
-  constructor(level, state, stopGame) {
+  constructor(level, state, images, stopGame) {
     const labelInput = true;
-    super(level, state, stopGame, labelInput);
+    super(level, state, images, stopGame, labelInput);
     this.level = level;
     this.answers = state.answers;
     this.addHeader();

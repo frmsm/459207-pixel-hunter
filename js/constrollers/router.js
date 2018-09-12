@@ -34,6 +34,7 @@ const checkStatus = (response) => {
 };
 
 let gameData;
+export let images = {};
 
 export const updateScreen = (container, ...view) => {
   container.innerHTML = ``;
@@ -54,7 +55,7 @@ export default class Router {
   }
 
   static showGame(playerName) {
-    Router.showLevel(new GameModel(playerName, gameData));
+    Router.showLevel(new GameModel(playerName, gameData, images));
   }
 
   static showLevel(model) {
