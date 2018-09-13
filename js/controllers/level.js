@@ -33,7 +33,7 @@ export default class Level {
     this._timeOut = setInterval(()=> {
       this.model.tick();
       this.level.updateTimer(this.model.state.time);
-      if (this.model.endTime()) {
+      if (this.model.isTimeEnd()) {
         this.stopGame();
         this.model.die();
         this.continueGame();
