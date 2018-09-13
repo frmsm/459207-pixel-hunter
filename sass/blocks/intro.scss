@@ -3,7 +3,7 @@
  */
 
 .intro {
-  position: relative;
+  position: absolute;
 
   display: flex;
   flex-direction: column;
@@ -14,6 +14,8 @@
 
   background: url("../img/egg_big.png") no-repeat center;
   background-size: contain;
+
+  animation: introOpacity 2s ease-in-out forwards;
 }
 
 .intro__asterisk {
@@ -37,10 +39,6 @@
   position: absolute;
   right: 0;
   top: 0;
-}
-
-.intro__opacity {
-  animation: introOpacity 1s ease-in-out;
 }
 
 @keyframes introOpacity {

@@ -25,8 +25,8 @@ export const updateScreen = (container, ...view) => {
 export default class Router {
   static showWelcome() {
     const intro = new WelcomeScreen();
-    updateScreen(main, intro.element);
-    intro.click();
+    const greetings = new GreetingsScreen();
+    updateScreen(main, intro.element, greetings.element);
   }
 
   static showGreetings() {

@@ -11,16 +11,4 @@ export default class IntroView extends AbstractView {
     <p class="intro__motto"><sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.</p>
   </section>`;
   }
-
-  onClose() {
-    this.element.classList.add(`intro__opacity`);
-  }
-
-  onClick() {}
-
-  bind() {
-    this.element.querySelector(`.intro__asterisk`).addEventListener(`click`, () => {
-      this.onClick();
-    });
-  }
 }
