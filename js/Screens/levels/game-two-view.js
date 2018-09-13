@@ -1,4 +1,4 @@
-import LevelView from "./game-view";
+import LevelView from "./level-view";
 
 export default class GameTwoView extends LevelView {
   constructor(level, state, images, stopGame) {

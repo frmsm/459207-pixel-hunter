@@ -1,5 +1,5 @@
 import ModalView from "../Screens/static-screens/modal-view";
-import Router from "./router";
+import Router from "../router";
 
 export default class ModalScreen {
   constructor(stopTimer) {

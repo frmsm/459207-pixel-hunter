@@ -1,10 +1,11 @@
 import AbstractView from "./Abstract";
-import BackButton from "../controllers/back-button";
+// import BackButton from "../controllers/back-button";
+import BackButton from "./header/back-button";
 
 export default class RulesView extends AbstractView {
   constructor() {
     super();
-    this.backBtn = new BackButton();
+    this.backBtn = new BackButton(()=>this.back());
   }
 
   get template() {
@@ -27,6 +28,8 @@ export default class RulesView extends AbstractView {
     </form>
   </section>`;
   }
+
+  back() {}
 
   onClick() {}
 

@@ -1,4 +1,4 @@
-import LevelView from "./game-view";
+import LevelView from "./level-view";
 
 export default class GameThreeView extends LevelView {
   constructor(level, state, images, stopGame) {
@@ -9,16 +9,19 @@ export default class GameThreeView extends LevelView {
   }
 
   get rightAnswer() {
+    const RIGHT = true;
+    const WRONG = false;
     let options = {};
 
     for (let a of this.level.answers) {
-      options[a.type] = isNaN(options[a.type])
-        ? options[a.type] = 1
-        : options[a.type] + 1;
+      options[a.type] = options[a.type] === undefined
+        ? RIGHT
+        : WRONG;
     }
+
     let right;
     for (let key in options) {
-      if (options[key] === 1) {
+      if (options[key] === RIGHT) {
         right = key;
         break;
       }

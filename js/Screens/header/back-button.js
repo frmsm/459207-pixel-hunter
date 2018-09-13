@@ -1,6 +1,10 @@
 import AbstractView from "../Abstract";
 
 export default class BackButtonView extends AbstractView {
+  constructor(stopGame = null) {
+    super();
+    this.stopGame = stopGame;
+  }
 
   get template() {
     return `
@@ -16,11 +20,13 @@ export default class BackButtonView extends AbstractView {
  `;
   }
 
-  onClick() {}
+  onClick() {
+    this.stopGame();
+  }
 
   bind() {
     const goBackButton = this.element.querySelector(`.back`);
-    goBackButton.addEventListener(`click`, this.onClick);
+    goBackButton.addEventListener(`click`, ()=>this.onClick());
   }
 }
 

@@ -2,13 +2,14 @@ import {ONE_SECOND} from "../data/game";
 import GameOneView from "../Screens/levels/game-one-view";
 import GameTwoView from "../Screens/levels/game-two-view";
 import GameThreeView from "../Screens/levels/game-three-view";
-import Router from "./router";
+import Router from "../router";
 
 export default class Level {
   constructor(model) {
     this.model = model;
     this.level = this.setGameType();
     this.level.onAnswer = this.answer.bind(this);
+    this.level.back = this.back.bind(this);
     this._timeOut = null;
     this.startTimer();
   }
@@ -21,7 +22,7 @@ export default class Level {
       'two-of-two': GameOneView,
       'one-of-three': GameThreeView
     };
-    return new gameTypes[type](level, this.model.state, this.model.images, ()=>this.stopGame());
+    return new gameTypes[type](level, this.model.state, this.model.images);
   }
 
   get element() {
@@ -38,6 +39,10 @@ export default class Level {
         this.continueGame();
       }
     }, ONE_SECOND);
+  }
+
+  back() {
+    Router.showModal(()=>this.stopGame());
   }
 
   stopGame() {
