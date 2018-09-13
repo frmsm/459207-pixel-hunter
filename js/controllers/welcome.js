@@ -1,5 +1,6 @@
-import IntroView from "../Screens/static-screens/Welcome";
+import IntroView from "../Screens/static-screens/welcome-view";
 import Router from "./router";
+import {ONE_SECOND} from "../data/game";
 
 export default class WelcomeScreen {
   constructor() {
@@ -12,6 +13,7 @@ export default class WelcomeScreen {
   }
 
   click() {
-    Router.showGreetings();
+    this.intro.onClose();
+    setTimeout(() => Router.showGreetings(), ONE_SECOND);
   }
 }

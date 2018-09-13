@@ -12,6 +12,10 @@ export default class IntroView extends AbstractView {
   </section>`;
   }
 
+  onClose() {
+    this.element.classList.add(`intro__opacity`);
+  }
+
   onClick() {}
 
   bind() {

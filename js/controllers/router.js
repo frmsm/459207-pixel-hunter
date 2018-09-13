@@ -9,7 +9,7 @@ import GameModel from "../game-model";
 import Level from "./level";
 import {getImagesArray} from "../data/load-images";
 import ModalScreen from "./modal";
-import Loader from "../data/loader";
+import Loader from "../data/load-data";
 import {pushResults} from "../data/scores";
 
 let gameData;
@@ -26,6 +26,7 @@ export default class Router {
   static showWelcome() {
     const intro = new WelcomeScreen();
     updateScreen(main, intro.element);
+    intro.click();
   }
 
   static showGreetings() {

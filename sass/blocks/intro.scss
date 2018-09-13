@@ -38,3 +38,17 @@
   right: 0;
   top: 0;
 }
+
+.intro__opacity {
+  animation: introOpacity 1s ease-in-out;
+}
+
+@keyframes introOpacity {
+  100% {
+    opacity: 0;
+  }
+
+  0% {
+    opacity: 1;
+  }
+}
