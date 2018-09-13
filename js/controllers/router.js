@@ -81,6 +81,6 @@ export default class Router {
       })
       .then((promises)=>Promise.all(promises))
       .then(()=>Router.showWelcome())
-      .catch(loader.onError);
+      .catch(()=>Router.showError());
   }
 }

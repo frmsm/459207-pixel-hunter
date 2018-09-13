@@ -1,5 +1,4 @@
 import LoaderView from "../Screens/static-screens/load-view";
-import Router from "./router";
 
 export default class LoaderScreen {
   constructor() {
@@ -8,13 +7,5 @@ export default class LoaderScreen {
 
   get element() {
     return this.loader.element;
-  }
-
-  nextScreen() {
-    Router.showWelcome();
-  }
-
-  onError() {
-    Router.showError();
   }
 }
