@@ -9,28 +9,29 @@ import GameModel from "../game-model";
 import Level from "./level";
 import {getImagesArray} from "../data/load-images";
 import ModalScreen from "./modal";
-import Loader from "../data/loader";
+import Loader from "../data/load-data";
 import {pushResults} from "../data/scores";
 
 let gameData;
 let images = {};
 
-export const updateScreen = (container, ...view) => {
-  container.innerHTML = ``;
-  [...view].forEach((it) => {
-    container.appendChild(it);
-  });
+const updateScreen = (...view) => {
+  main.innerHTML = ``;
+  for (let element of [...view]) {
+    main.appendChild(element);
+  }
 };
 
 export default class Router {
   static showWelcome() {
     const intro = new WelcomeScreen();
-    updateScreen(main, intro.element);
+    const greetings = new GreetingsScreen();
+    updateScreen(intro.element, greetings.element);
   }
 
   static showGreetings() {
     const greet = new GreetingsScreen();
-    updateScreen(main, greet.element);
+    updateScreen(greet.element);
   }
 
   static showGame(playerName) {
@@ -39,12 +40,12 @@ export default class Router {
 
   static showLevel(model) {
     const game = new Level(model);
-    updateScreen(main, game.element);
+    updateScreen(game.element);
   }
 
   static showRules() {
     const rules = new RulesScreen();
-    updateScreen(main, rules.element);
+    updateScreen(rules.element);
   }
 
   static showStats(model) {
@@ -55,14 +56,14 @@ export default class Router {
       })
       .then((data)=>{
         const stats = new StatsScreen(data);
-        updateScreen(main, stats.element);
+        updateScreen(stats.element);
       })
       .catch(Router.showError);
   }
 
   static showError() {
     const error = new ErrorScreen();
-    updateScreen(main, error.element);
+    updateScreen(error.element);
   }
 
   static showModal(stopGame) {
@@ -72,7 +73,7 @@ export default class Router {
 
   static showLoader() {
     const loader = new LoaderScreen();
-    updateScreen(main, loader.element);
+    updateScreen(loader.element);
     Loader.loadData()
       .then((data)=>{
         gameData = data;
@@ -80,6 +81,6 @@ export default class Router {
       })
       .then((promises)=>Promise.all(promises))
       .then(()=>Router.showWelcome())
-      .catch(loader.onError);
+      .catch(()=>Router.showError());
   }
 }

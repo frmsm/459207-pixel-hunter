@@ -7,20 +7,21 @@ import Router from "./router";
 export default class Level {
   constructor(model) {
     this.model = model;
-    this.level = this.setGameType(this.model.getCurrentLevel(), this.model.state, this.model.images, ()=>this.stopGame());
+    this.level = this.setGameType();
     this.level.onAnswer = this.answer.bind(this);
     this._timeOut = null;
     this.startTimer();
   }
 
-  setGameType(level, state, images, timer) {
+  setGameType() {
+    const level = this.model.getCurrentLevel();
     const type = level.type;
     const gameTypes = {
       'tinder-like': GameTwoView,
       'two-of-two': GameOneView,
       'one-of-three': GameThreeView
     };
-    return new gameTypes[type](level, state, images, timer);
+    return new gameTypes[type](level, this.model.state, this.model.images, ()=>this.stopGame());
   }
 
   get element() {

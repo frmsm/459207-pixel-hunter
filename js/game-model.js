@@ -5,9 +5,8 @@ import {
   INITIAL_STATE,
   changeLevel,
   updateAnswers,
-  setLevel
+  setLevel, GAME_FAIL
 } from "./data/game";
-import {pushResults} from "./data/scores";
 
 export default class GameModel {
   constructor(playerName = ``, data, images) {
@@ -26,7 +25,7 @@ export default class GameModel {
   }
 
   hasNextLevel() {
-    return setLevel(this._state.level + 1) > -1;
+    return setLevel(this._state.level + 1) > GAME_FAIL;
   }
 
   isEndGame() {
@@ -63,9 +62,5 @@ export default class GameModel {
 
   updateAnswers() {
     this._state = updateAnswers(this._state);
-  }
-
-  updateResults() {
-    pushResults(this._state);
   }
 }

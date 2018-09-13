@@ -57,13 +57,11 @@ export const countScores = (statistic) => {
 };
 
 export const pushResults = (state) => {
-  let results = [];
-  for (let answers of state) {
+  return state.map((answers) => {
     const statistic = countAnswers(answers);
     const score = countScores(statistic);
-    results.push({statistic, score});
-  }
-  return results;
+    return {statistic, score};
+  });
 };
 
 
