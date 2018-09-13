@@ -5,7 +5,7 @@ import {
   INITIAL_STATE,
   changeLevel,
   updateAnswers,
-  setLevel
+  setLevel, GAME_FAIL
 } from "./data/game";
 
 export default class GameModel {
@@ -25,7 +25,7 @@ export default class GameModel {
   }
 
   hasNextLevel() {
-    return setLevel(this._state.level + 1) > -1;
+    return setLevel(this._state.level + 1) > GAME_FAIL;
   }
 
   isEndGame() {
