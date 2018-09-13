@@ -7,7 +7,6 @@ import {
   updateAnswers,
   setLevel
 } from "./data/game";
-import {pushResults} from "./data/scores";
 
 export default class GameModel {
   constructor(playerName = ``, data, images) {
@@ -63,9 +62,5 @@ export default class GameModel {
 
   updateAnswers() {
     this._state = updateAnswers(this._state);
-  }
-
-  updateResults() {
-    pushResults(this._state);
   }
 }

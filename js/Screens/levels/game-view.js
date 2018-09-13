@@ -1,6 +1,6 @@
 import {resize} from "../../data/resize";
 import AbstractView from "../Abstract";
-import {curStats} from "../../current-stats";
+import {curStats} from "./current-stats";
 import BackButton from "../../controllers/back-button";
 import GameTimer from "../header/time";
 import GameLives from "../header/live";

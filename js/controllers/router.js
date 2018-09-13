@@ -13,25 +13,25 @@ import Loader from "../data/load-data";
 import {pushResults} from "../data/scores";
 
 let gameData;
-let images = {};
+const images = {};
 
-export const updateScreen = (container, ...view) => {
-  container.innerHTML = ``;
-  [...view].forEach((it) => {
-    container.appendChild(it);
-  });
+const updateScreen = (...view) => {
+  main.innerHTML = ``;
+  for (let element of [...view]) {
+    main.appendChild(element);
+  }
 };
 
 export default class Router {
   static showWelcome() {
     const intro = new WelcomeScreen();
     const greetings = new GreetingsScreen();
-    updateScreen(main, intro.element, greetings.element);
+    updateScreen(intro.element, greetings.element);
   }
 
   static showGreetings() {
     const greet = new GreetingsScreen();
-    updateScreen(main, greet.element);
+    updateScreen(greet.element);
   }
 
   static showGame(playerName) {
@@ -40,12 +40,12 @@ export default class Router {
 
   static showLevel(model) {
     const game = new Level(model);
-    updateScreen(main, game.element);
+    updateScreen(game.element);
   }
 
   static showRules() {
     const rules = new RulesScreen();
-    updateScreen(main, rules.element);
+    updateScreen(rules.element);
   }
 
   static showStats(model) {
@@ -56,14 +56,14 @@ export default class Router {
       })
       .then((data)=>{
         const stats = new StatsScreen(data);
-        updateScreen(main, stats.element);
+        updateScreen(stats.element);
       })
       .catch(Router.showError);
   }
 
   static showError() {
     const error = new ErrorScreen();
-    updateScreen(main, error.element);
+    updateScreen(error.element);
   }
 
   static showModal(stopGame) {
@@ -73,7 +73,7 @@ export default class Router {
 
   static showLoader() {
     const loader = new LoaderScreen();
-    updateScreen(main, loader.element);
+    updateScreen(loader.element);
     Loader.loadData()
       .then((data)=>{
         gameData = data;

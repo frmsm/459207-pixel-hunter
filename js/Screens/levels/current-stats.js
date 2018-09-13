@@ -1,4 +1,4 @@
-import {ANSWERS_COUNT, FAST_ANSWER_TIME, SLOW_ANSWER_TIME} from "./data/game";
+import {ANSWERS_COUNT, FAST_ANSWER_TIME, SLOW_ANSWER_TIME} from "../../data/game";
 
 export const curStats = (answers) => {
   return `<ul class="stats">
