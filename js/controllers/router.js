@@ -13,7 +13,7 @@ import Loader from "../data/load-data";
 import {pushResults} from "../data/scores";
 
 let gameData;
-const images = {};
+let images = {};
 
 const updateScreen = (...view) => {
   main.innerHTML = ``;
