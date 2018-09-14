@@ -5,7 +5,6 @@ export default class GameThreeView extends LevelView {
     const labelInput = false;
     super(level, state, images, stopGame, labelInput);
     this.level = level;
-    this.addHeader();
   }
 
   get rightAnswer() {

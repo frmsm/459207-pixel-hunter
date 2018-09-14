@@ -19,6 +19,7 @@ export default class LevelView extends AbstractView {
     this.lives = new GameLives(state.lives);
 
     this.header = this.element.querySelector(`.header`);
+    this.addHeader();
   }
 
   get template() {
