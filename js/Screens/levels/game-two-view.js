@@ -6,7 +6,6 @@ export default class GameTwoView extends LevelView {
     super(level, state, images, stopGame, labelInput);
     this.level = level;
     this.answers = state.answers;
-    this.addHeader();
   }
 
   bind() {
