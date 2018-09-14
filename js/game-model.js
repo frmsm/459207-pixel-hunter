@@ -1,4 +1,4 @@
-import {INITIAL_STATE, GAME_FAIL, MAX_LEVEL, NO_LIVES, ADD_LEVEL} from "./data/game";
+import {INITIAL_STATE, GAME_FAIL, MAX_LEVEL, NO_LIVES, ADD_LEVEL, NO_TIME} from "./data/game";
 import StateUpdater from "./data/state-updater";
 
 export default class GameModel {
@@ -63,7 +63,7 @@ export default class GameModel {
   }
 
   isTimeEnd() {
-    return StateUpdater.checkTimeEnd(this._state);
+    return this._state.time <= NO_TIME;
   }
 
   updateAnswers() {
