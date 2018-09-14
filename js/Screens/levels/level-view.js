@@ -1,10 +1,10 @@
 import {resize} from "../../data/resize";
 import AbstractView from "../Abstract";
 import {curStats} from "./current-stats";
-import BackButton from "../../controllers/back-button";
 import GameTimer from "../header/time";
 import GameLives from "../header/live";
 import {DEBUG} from "../../data/game";
+import BackButton from "../header/back-button";
 
 export default class LevelView extends AbstractView {
   constructor(level, state, images, stopGame, labelInput) {
@@ -12,14 +12,14 @@ export default class LevelView extends AbstractView {
     this.answers = state.answers;
     this.level = level;
     this.labelInput = labelInput;
-    this.stopGame = stopGame;
     this.images = images;
 
-    this.backBtn = new BackButton(this.stopGame);
+    this.backBtn = new BackButton(()=>this.back());
     this.timer = new GameTimer(state.time);
     this.lives = new GameLives(state.lives);
 
     this.header = this.element.querySelector(`.header`);
+    this.addHeader();
   }
 
   get template() {
@@ -62,6 +62,8 @@ export default class LevelView extends AbstractView {
     });
   }
 
+  back() {}
+
   onAnswer() {}
 
   updateTimer(time) {
@@ -87,9 +89,7 @@ export default class LevelView extends AbstractView {
       const question = this.element.querySelector(`.game__task`);
       const rightAnswer = document.createElement(`span`);
       rightAnswer.style.color = `red`;
-      for (let answer of this.level.answers) {
-        rightAnswer.textContent = rightAnswer.textContent + ` ` + answer.type;
-      }
+      rightAnswer.textContent = this.level.answers.map((it)=>it.type).join(` `);
       question.appendChild(rightAnswer);
     }
   }

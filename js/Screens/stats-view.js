@@ -1,6 +1,6 @@
 import {curStats} from "./levels/current-stats";
 import AbstractView from "./Abstract";
-import BackButton from "../controllers/back-button";
+import BackButton from "./header/back-button";
 import {RIGHT_ANSWER_MULTIPLIER} from "../data/game";
 
 const TYPE_MULTIPLIER = 50;
@@ -9,7 +9,7 @@ export default class StatsView extends AbstractView {
   constructor(results) {
     super();
     this.results = results;
-    this.backBtn = new BackButton();
+    this.backBtn = new BackButton(()=>this.back());
   }
 
   renderScoreType(score, count, type) {
@@ -80,6 +80,8 @@ export default class StatsView extends AbstractView {
       </table>
     </section>`;
   }
+
+  back() {}
 
   bind() {
     const header = this.element.querySelector(`.header`);

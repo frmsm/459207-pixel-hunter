@@ -7,7 +7,8 @@ import {
   WRONG_ANSWER
 } from "./game";
 
-export const countAnswers = (state) => {
+const countAnswers = (state) => {
+  const NO_ANSWERS = 0;
   let answerStatistic = {};
   if (state.lives === NO_LIVES) {
     answerStatistic = {
@@ -19,9 +20,9 @@ export const countAnswers = (state) => {
 
   answerStatistic = {
     answers: state.answers,
-    answer: 0,
-    fast: 0,
-    slow: 0,
+    answer: NO_ANSWERS,
+    fast: NO_ANSWERS,
+    slow: NO_ANSWERS,
     lives: state.lives,
   };
 
@@ -39,7 +40,7 @@ export const countAnswers = (state) => {
   return answerStatistic;
 };
 
-export const countScores = (statistic) => {
+const countScores = (statistic) => {
   if (statistic.lives === NO_LIVES) {
     return {total: GAME_FAIL};
   }

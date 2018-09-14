@@ -1,4 +1,4 @@
-import LevelView from "./game-view";
+import LevelView from "./level-view";
 
 export default class GameTwoView extends LevelView {
   constructor(level, state, images, stopGame) {
@@ -6,7 +6,6 @@ export default class GameTwoView extends LevelView {
     super(level, state, images, stopGame, labelInput);
     this.level = level;
     this.answers = state.answers;
-    this.addHeader();
   }
 
   bind() {

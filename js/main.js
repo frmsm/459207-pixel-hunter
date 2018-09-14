@@ -1,9 +1,5 @@
-import Router from "./controllers/router";
+import Router from "./router";
 
 export const main = document.getElementById(`main`);
 
-const startGame = () => {
-  Router.showLoader();
-};
-
-startGame();
+Router.showLoader();
