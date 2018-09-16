@@ -1,5 +1,5 @@
 import {resize} from "../../data/resize";
-import AbstractView from "../Abstract";
+import AbstractView from "../abstract";
 import {curStats} from "./current-stats";
 import GameTimer from "../header/time";
 import GameLives from "../header/live";

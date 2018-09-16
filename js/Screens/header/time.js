@@ -1,4 +1,4 @@
-import AbstractView from "../Abstract";
+import AbstractView from "../abstract";
 import {HALF_SECOND, TIME_LEFT} from "../../data/game";
 
 export default class GameTimerView extends AbstractView {

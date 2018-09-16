@@ -1,4 +1,4 @@
-import AbstractView from "../Abstract";
+import AbstractView from "../abstract";
 
 export default class ModalView extends AbstractView {
   constructor() {

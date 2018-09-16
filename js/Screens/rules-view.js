@@ -1,4 +1,4 @@
-import AbstractView from "./Abstract";
+import AbstractView from "./abstract";
 // import BackButton from "../controllers/back-button";
 import BackButton from "./header/back-button";
 

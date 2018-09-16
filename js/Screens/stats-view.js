@@ -1,5 +1,5 @@
 import {curStats} from "./levels/current-stats";
-import AbstractView from "./Abstract";
+import AbstractView from "./abstract";
 import BackButton from "./header/back-button";
 import {RIGHT_ANSWER_MULTIPLIER} from "../data/game";
 
