@@ -1,4 +1,4 @@
-import AbstractView from "../abstract";
+import AbstractView from "../abstract-view";
 
 export default class BackButtonView extends AbstractView {
   constructor(stopGame = null) {

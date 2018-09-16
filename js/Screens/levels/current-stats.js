@@ -1,6 +1,6 @@
 import {ANSWERS_COUNT, FAST_ANSWER_TIME, SLOW_ANSWER_TIME} from "../../data/game";
 
-export const curStats = (answers) => {
+export const currentStats = (answers) => {
   return `<ul class="stats">
   ${answers.map((it) => {
     if (it === -1) {

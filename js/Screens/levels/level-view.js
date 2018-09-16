@@ -1,10 +1,10 @@
 import {resize} from "../../data/resize";
-import AbstractView from "../abstract";
-import {curStats} from "./current-stats";
-import GameTimer from "../header/time";
-import GameLives from "../header/live";
+import AbstractView from "../abstract-view";
+import {currentStats} from "./current-stats";
+import GameTimer from "../header/game-time-view";
+import GameLives from "../header/game-lives-view";
 import {DEBUG} from "../../data/game";
-import BackButton from "../header/back-button";
+import BackButton from "../header/back-button-view";
 
 export default class LevelView extends AbstractView {
   constructor(level, state, images, stopGame, labelInput) {
@@ -42,7 +42,7 @@ export default class LevelView extends AbstractView {
          </div>`;
   }).join(``)}
   </form>
-  ${curStats(this.answers)}
+  ${currentStats(this.answers)}
 </section>`;
   }
 

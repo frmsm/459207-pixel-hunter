@@ -1,6 +1,6 @@
-import {curStats} from "./levels/current-stats";
-import AbstractView from "./abstract";
-import BackButton from "./header/back-button";
+import {currentStats} from "./levels/current-stats";
+import AbstractView from "./abstract-view";
+import BackButton from "./header/back-button-view";
 import {RIGHT_ANSWER_MULTIPLIER} from "../data/game";
 
 const TYPE_MULTIPLIER = 50;
@@ -50,7 +50,7 @@ export default class StatsView extends AbstractView {
     return `<tr>
     <td class="result__number">${++i}.</td>
       <td colspan="2">
-        ${curStats(it.statistic.answers)}   
+        ${currentStats(it.statistic.answers)}   
       </td>
       ${it.score.total === -1
     ? `<td class="result__total"></td>
