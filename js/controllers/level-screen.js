@@ -17,12 +17,12 @@ export default class LevelScreen {
   setGameType() {
     const level = this.model.getCurrentLevel();
     const type = level.type;
-    const gameTypes = {
+    const GameTypes = {
       'tinder-like': GameTwoView,
       'two-of-two': GameOneView,
       'one-of-three': GameThreeView
     };
-    return new gameTypes[type](level, this.model.state, this.model.images);
+    return new GameTypes[type](level, this.model.state, this.model.images);
   }
 
   get element() {

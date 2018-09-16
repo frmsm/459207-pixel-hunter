@@ -1,4 +1,4 @@
-import {ANSWERS_COUNT, FAST_ANSWER_TIME, SLOW_ANSWER_TIME} from "../../data/game";
+import {ANSWERS_COUNT, AnswerTime} from "../../data/game";
 
 export const currentStats = (answers) => {
   return `<ul class="stats">
@@ -6,13 +6,13 @@ export const currentStats = (answers) => {
     if (it === -1) {
       return `<li class="stats__result stats__result--wrong"></li>`;
     }
-    if (it < SLOW_ANSWER_TIME) {
+    if (it <= AnswerTime.SLOW) {
       return `<li class="stats__result stats__result--slow"></li>`;
     }
-    if (it >= FAST_ANSWER_TIME) {
+    if (it >= AnswerTime.FAST) {
       return `<li class="stats__result stats__result--fast"></li>`;
     }
-    if (it > SLOW_ANSWER_TIME && it < FAST_ANSWER_TIME) {
+    if (it > AnswerTime.SLOW && it < AnswerTime.FAST) {
       return `<li class="stats__result stats__result--correct"></li>`;
     }
     return `<li class="stats__result stats__result--unknown"></li>`;
