@@ -19,8 +19,8 @@ export default class GameOneView extends LevelView {
     const questionTwoElement = this.element.querySelectorAll(`[name=question2]`);
 
     gameContentElement.addEventListener(`click`, () => {
-      const q1 = this.getQuestionValue(questionOneElement);
-      const q2 = this.getQuestionValue(questionTwoElement);
+      const q1 = LevelView.getQuestionValue(questionOneElement);
+      const q2 = LevelView.getQuestionValue(questionTwoElement);
       if (q1 && q2) {
         this.onAnswer(q1.value === this.level.answers[0].type && q2.value === this.level.answers[1].type);
       }

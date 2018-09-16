@@ -7,6 +7,12 @@ import {DEBUG} from "../../data/game";
 import BackButton from "../header/back-button-view";
 
 export default class LevelView extends AbstractView {
+  static getQuestionValue(question) {
+    return [...question].find((q) => {
+      return q.type === `radio` && q.checked;
+    });
+  }
+
   constructor(level, state, images, stopGame, labelInput) {
     super();
     this.answers = state.answers;
@@ -70,12 +76,6 @@ export default class LevelView extends AbstractView {
     const timer = new GameTimer(time);
     this.headerElement.replaceChild(timer.element, this.timer.element);
     this.timer = timer;
-  }
-
-  getQuestionValue(question) {
-    return [...question].find((q) => {
-      return q.type === `radio` && q.checked;
-    });
   }
 
   addHeader() {

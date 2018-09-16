@@ -20,7 +20,7 @@ export default class GameTwoView extends LevelView {
     const answers = this.level.answers;
 
     gameContentElement.addEventListener(`click`, () => {
-      const q1 = this.getQuestionValue(questionOneElement);
+      const q1 = LevelView.getQuestionValue(questionOneElement);
       if (q1) {
         this.onAnswer(q1.value === answers[0].type);
       }

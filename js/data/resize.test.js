@@ -1,8 +1,4 @@
 import assert from 'assert';
-
-// NB! В этом тесте подразумевается, что модуль называется `resize`
-// и экспортирует метод `resize`. Если вы назовёте метод иначе, учтите
-// это в тексте этого теста
 import {resize} from './resize';
 
 const createTestForFrame = (frame) => {
