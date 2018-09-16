@@ -3,22 +3,23 @@ import AbstractView from "./abstract-view";
 import BackButton from "./header/back-button-view";
 import {Multiplier} from "../data/game";
 
+const ScoreType = {
+  'fast': `Бонус за скорость:`,
+  'slow': `Штраф за медлительность`,
+  'lives': `Бонус за жизни:`
+};
+
+const StyleType = {
+  'fast': `stats__result--fast`,
+  'slow': `stats__result--slow`,
+  'lives': `stats__result--alive`
+};
+
 export default class StatsView extends AbstractView {
   constructor(results) {
     super();
     this.results = results;
     this.backBtn = new BackButton(()=>this.back());
-    this.ScoreType = {
-      'fast': `Бонус за скорость:`,
-      'slow': `Штраф за медлительность`,
-      'lives': `Бонус за жизни:`
-    };
-
-    this.StyleType = {
-      'fast': `stats__result--fast`,
-      'slow': `stats__result--slow`,
-      'lives': `stats__result--alive`
-    };
   }
 
   renderScoreType(score, count, type) {
@@ -32,8 +33,8 @@ export default class StatsView extends AbstractView {
     return score > 0
       ? `<tr>
       <td></td>
-      <td class="result__extra">${this.ScoreType[type]}</td>
-      <td class="result__extra">${count} <span class="stats__result ${this.StyleType[type]}"></span></td>
+      <td class="result__extra">${ScoreType[type]}</td>
+      <td class="result__extra">${count} <span class="stats__result ${StyleType[type]}"></span></td>
       <td class="result__points">× ${Multiplier.Answer.TYPE}</td>
       <td class="result__total">${score}</td>
     </tr>`
