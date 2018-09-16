@@ -35,17 +35,17 @@ export default class RulesView extends AbstractView {
   bind() {
     const MIN_NAME_LENGTH = 4;
 
-    const inputName = this.element.querySelector(`.rules__input`);
-    const header = this.element.querySelector(`.header`);
-    header.appendChild(this.backBtn.element);
+    const inputNameElement = this.element.querySelector(`.rules__input`);
+    const headerElement = this.element.querySelector(`.header`);
+    headerElement.appendChild(this.backBtn.element);
 
     const goButton = this.element.querySelector(`.rules__button`);
     goButton.addEventListener(`click`, (e)=>{
       e.preventDefault();
-      this.onClick(inputName.value);
+      this.onClick(inputNameElement.value);
     });
 
-    inputName.addEventListener(`input`, (e) => {
+    inputNameElement.addEventListener(`input`, (e) => {
       goButton.disabled = e.target.value.trim().length < MIN_NAME_LENGTH;
     });
   }

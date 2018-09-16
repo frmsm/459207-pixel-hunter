@@ -30,15 +30,15 @@ export default class ModalView extends AbstractView {
   }
 
   bind() {
-    const okBtn = this.element.querySelector(`.modal__btn-ok`);
-    const cancelBtn = this.element.querySelector(`.modal__btn-cancel`);
-    const closeBtn = this.element.querySelector(`.modal__close`);
+    const okBtnElement = this.element.querySelector(`.modal__btn-ok`);
+    const cancelBtnElement = this.element.querySelector(`.modal__btn-cancel`);
+    const closeBtnElement = this.element.querySelector(`.modal__close`);
 
-    okBtn.addEventListener(`click`, (e)=>this.onOk(e));
-    cancelBtn.addEventListener(`click`, (e)=>{
+    okBtnElement.addEventListener(`click`, (e)=>this.onOk(e));
+    cancelBtnElement.addEventListener(`click`, (e)=>{
       e.preventDefault();
       this.closeModal();
     });
-    closeBtn.addEventListener(`click`, ()=>this.closeModal());
+    closeBtnElement.addEventListener(`click`, ()=>this.closeModal());
   }
 }

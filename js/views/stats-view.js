@@ -82,7 +82,7 @@ export default class StatsView extends AbstractView {
   back() {}
 
   bind() {
-    const header = this.element.querySelector(`.header`);
-    header.appendChild(this.backBtn.element);
+    const headerElement = this.element.querySelector(`.header`);
+    headerElement.appendChild(this.backBtn.element);
   }
 }
