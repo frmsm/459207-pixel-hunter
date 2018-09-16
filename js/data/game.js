@@ -7,6 +7,7 @@ export const INITIAL_STATE = Object.freeze({
 
 export const DEBUG = true;
 
+export const TYPE_MULTIPLIER = 50;
 export const ANSWERS_COUNT = 10;
 export const FAST_ANSWER_TIME = 20;
 export const SLOW_ANSWER_TIME = 9;
