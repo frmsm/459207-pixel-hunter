@@ -1,4 +1,4 @@
-import ModalView from "../Screens/static-screens/modal-view";
+import ModalView from "../views/static-screens/modal-view";
 import Router from "../router";
 
 export default class ModalScreen {

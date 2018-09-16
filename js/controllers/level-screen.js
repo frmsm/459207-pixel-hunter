@@ -1,10 +1,10 @@
 import {ONE_SECOND} from "../data/game";
-import GameOneView from "../Screens/levels/game-one-view";
-import GameTwoView from "../Screens/levels/game-two-view";
-import GameThreeView from "../Screens/levels/game-three-view";
+import GameOneView from "../views/levels/game-one-view";
+import GameTwoView from "../views/levels/game-two-view";
+import GameThreeView from "../views/levels/game-three-view";
 import Router from "../router";
 
-export default class Level {
+export default class LevelScreen {
   constructor(model) {
     this.model = model;
     this.level = this.setGameType();

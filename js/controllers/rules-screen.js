@@ -1,4 +1,4 @@
-import RulesView from "../Screens/rules-view";
+import RulesView from "../views/rules-view";
 import Router from "../router";
 
 export default class RulesScreen {

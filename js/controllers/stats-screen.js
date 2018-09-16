@@ -1,4 +1,4 @@
-import StatsView from "../Screens/stats-view";
+import StatsView from "../views/stats-view";
 import Router from "../router";
 
 export default class StatsScreen {

@@ -1,4 +1,4 @@
-import GreetingsView from "../Screens/static-screens/greetings-view";
+import GreetingsView from "../views/static-screens/greetings-view";
 import Router from "../router";
 
 export default class GreetingsScreen {
