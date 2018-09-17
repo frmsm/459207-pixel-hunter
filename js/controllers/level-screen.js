@@ -20,14 +20,14 @@ export default class LevelScreen {
     this.startTimer();
   }
 
+  get element() {
+    return this.level.element;
+  }
+
   setGameType() {
     const level = this.model.getCurrentLevel();
     const type = level.type;
     return new GameType[type](level, this.model.state, this.model.images);
-  }
-
-  get element() {
-    return this.level.element;
   }
 
   startTimer() {
@@ -42,10 +42,6 @@ export default class LevelScreen {
     }, ONE_SECOND);
   }
 
-  back() {
-    Router.showModal(()=>this.stopGame());
-  }
-
   stopGame() {
     clearInterval(this._timeOut);
   }
@@ -55,16 +51,20 @@ export default class LevelScreen {
     Router.showLevel(this.model);
   }
 
-  exit() {
-    Router.showStats(this.model);
-  }
-
   continueGame() {
     if (this.model.isEndGame()) {
       this.exit();
     } else {
       this.newLevel();
     }
+  }
+
+  exit() {
+    Router.showStats(this.model);
+  }
+
+  back() {
+    Router.showModal(()=>this.stopGame());
   }
 
   answer(answer) {

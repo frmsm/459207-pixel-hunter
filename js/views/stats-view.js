@@ -41,6 +41,20 @@ export default class StatsView extends AbstractView {
     this.backBtn = new BackButton(()=>this.back());
   }
 
+  get template() {
+    return `<header class="header"></header>
+    <section class="result">
+    <h2 class="result__title">${this.scoreType ? `FAIL` : `Победа`}</h2>
+      <table class="result__table">
+        ${this.resultsRender(this.results)}
+      </table>
+    </section>`;
+  }
+
+  get scoreType() {
+    return this.results[this.results.length - 1].score.total < 0;
+  }
+
   resultsRender(result) {
     const newResult = [...result];
     return `
@@ -63,20 +77,6 @@ export default class StatsView extends AbstractView {
     </tr>`;
   }).join(``)
 }`;
-  }
-
-  get scoreType() {
-    return this.results[this.results.length - 1].score.total < 0;
-  }
-
-  get template() {
-    return `<header class="header"></header>
-    <section class="result">
-    <h2 class="result__title">${this.scoreType ? `FAIL` : `Победа`}</h2>
-      <table class="result__table">
-        ${this.resultsRender(this.results)}
-      </table>
-    </section>`;
   }
 
   back() {}
