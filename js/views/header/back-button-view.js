@@ -1,4 +1,4 @@
-import AbstractView from "../Abstract";
+import AbstractView from "../abstract-view";
 
 export default class BackButtonView extends AbstractView {
   constructor(stopGame = null) {
@@ -25,8 +25,8 @@ export default class BackButtonView extends AbstractView {
   }
 
   bind() {
-    const goBackButton = this.element.querySelector(`.back`);
-    goBackButton.addEventListener(`click`, ()=>this.onClick());
+    const goBackButtonElement = this.element.querySelector(`.back`);
+    goBackButtonElement.addEventListener(`click`, ()=>this.onClick());
   }
 }
 

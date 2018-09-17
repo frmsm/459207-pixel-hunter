@@ -1,4 +1,4 @@
-import IntroView from "../Screens/static-screens/welcome-view";
+import IntroView from "../views/static-screens/intro-view";
 
 export default class WelcomeScreen {
   constructor() {

@@ -1,14 +1,14 @@
 import {main} from "./main";
-import ErrorScreen from "./controllers/error";
-import WelcomeScreen from "./controllers/welcome";
-import GreetingsScreen from "./controllers/greetings";
-import LoaderScreen from "./controllers/loader";
-import RulesScreen from "./controllers/rules";
-import StatsScreen from "./controllers/stats";
+import ErrorScreen from "./controllers/error-screen";
+import WelcomeScreen from "./controllers/welcome-screen";
+import GreetingsScreen from "./controllers/greetings-screen";
+import LoaderScreen from "./controllers/loader-screen";
+import RulesScreen from "./controllers/rules-screen";
+import StatsScreen from "./controllers/stats-screen";
 import GameModel from "./game-model";
-import Level from "./controllers/level";
+import LevelScreen from "./controllers/level-screen";
 import {getImagesArray} from "./data/load-images";
-import ModalScreen from "./controllers/modal";
+import ModalScreen from "./controllers/modal-screen";
 import Loader from "./data/load-data";
 import {pushResults} from "./data/scores";
 
@@ -39,7 +39,7 @@ export default class Router {
   }
 
   static showLevel(model) {
-    const game = new Level(model);
+    const game = new LevelScreen(model);
     updateScreen(game.element);
   }
 

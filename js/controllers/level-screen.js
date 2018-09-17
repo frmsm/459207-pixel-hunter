@@ -1,10 +1,16 @@
 import {ONE_SECOND} from "../data/game";
-import GameOneView from "../Screens/levels/game-one-view";
-import GameTwoView from "../Screens/levels/game-two-view";
-import GameThreeView from "../Screens/levels/game-three-view";
+import GameOneView from "../views/levels/game-one-view";
+import GameTwoView from "../views/levels/game-two-view";
+import GameThreeView from "../views/levels/game-three-view";
 import Router from "../router";
 
-export default class Level {
+const GameType = {
+  'tinder-like': GameTwoView,
+  'two-of-two': GameOneView,
+  'one-of-three': GameThreeView
+};
+
+export default class LevelScreen {
   constructor(model) {
     this.model = model;
     this.level = this.setGameType();
@@ -17,12 +23,7 @@ export default class Level {
   setGameType() {
     const level = this.model.getCurrentLevel();
     const type = level.type;
-    const gameTypes = {
-      'tinder-like': GameTwoView,
-      'two-of-two': GameOneView,
-      'one-of-three': GameThreeView
-    };
-    return new gameTypes[type](level, this.model.state, this.model.images);
+    return new GameType[type](level, this.model.state, this.model.images);
   }
 
   get element() {

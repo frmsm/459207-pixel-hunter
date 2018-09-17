@@ -1,4 +1,4 @@
-import AbstractView from "../Abstract";
+import AbstractView from "../abstract-view";
 import {HALF_SECOND, TIME_LEFT} from "../../data/game";
 
 export default class GameTimerView extends AbstractView {
@@ -11,11 +11,11 @@ export default class GameTimerView extends AbstractView {
   }
 
   bind() {
-    const time = this.element.querySelector(`.game__timer`);
+    const timeElement = this.element.querySelector(`.game__timer`);
     if (this.time <= TIME_LEFT) {
-      time.style.color = `red`;
+      timeElement.style.color = `red`;
       setTimeout(()=>{
-        time.style.color = `black`;
+        timeElement.style.color = `black`;
       }, HALF_SECOND);
     }
   }

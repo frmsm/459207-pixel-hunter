@@ -1,4 +1,4 @@
-import AbstractView from "../Abstract";
+import AbstractView from "../abstract-view";
 
 export default class LoaderView extends AbstractView {
   constructor() {

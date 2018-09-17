@@ -1,4 +1,4 @@
-import AbstractView from "../Abstract";
+import AbstractView from "../abstract-view";
 import {INITIAL_STATE} from "../../data/game";
 
 export default class GameLivesView extends AbstractView {

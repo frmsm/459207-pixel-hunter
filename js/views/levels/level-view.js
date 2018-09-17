@@ -1,12 +1,18 @@
 import {resize} from "../../data/resize";
-import AbstractView from "../Abstract";
-import {curStats} from "./current-stats";
-import GameTimer from "../header/time";
-import GameLives from "../header/live";
+import AbstractView from "../abstract-view";
+import {currentStats} from "./current-stats";
+import GameTimer from "../header/game-timer-view";
+import GameLives from "../header/game-lives-view";
 import {DEBUG} from "../../data/game";
-import BackButton from "../header/back-button";
+import BackButton from "../header/back-button-view";
 
 export default class LevelView extends AbstractView {
+  static getQuestionValue(question) {
+    return [...question].find((q) => {
+      return q.type === `radio` && q.checked;
+    });
+  }
+
   constructor(level, state, images, stopGame, labelInput) {
     super();
     this.answers = state.answers;
@@ -18,7 +24,7 @@ export default class LevelView extends AbstractView {
     this.timer = new GameTimer(state.time);
     this.lives = new GameLives(state.lives);
 
-    this.header = this.element.querySelector(`.header`);
+    this.headerElement = this.element.querySelector(`.header`);
     this.addHeader();
   }
 
@@ -42,7 +48,7 @@ export default class LevelView extends AbstractView {
          </div>`;
   }).join(``)}
   </form>
-  ${curStats(this.answers)}
+  ${currentStats(this.answers)}
 </section>`;
   }
 
@@ -68,29 +74,23 @@ export default class LevelView extends AbstractView {
 
   updateTimer(time) {
     const timer = new GameTimer(time);
-    this.header.replaceChild(timer.element, this.timer.element);
+    this.headerElement.replaceChild(timer.element, this.timer.element);
     this.timer = timer;
   }
 
-  getQuestionValue(question) {
-    return [...question].find((q) => {
-      return q.type === `radio` && q.checked;
-    });
-  }
-
   addHeader() {
-    this.header.appendChild(this.backBtn.element);
-    this.header.appendChild(this.timer.element);
-    this.header.appendChild(this.lives.element);
+    this.headerElement.appendChild(this.backBtn.element);
+    this.headerElement.appendChild(this.timer.element);
+    this.headerElement.appendChild(this.lives.element);
   }
 
   showAnswers() {
     if (DEBUG) {
-      const question = this.element.querySelector(`.game__task`);
-      const rightAnswer = document.createElement(`span`);
-      rightAnswer.style.color = `red`;
-      rightAnswer.textContent = this.level.answers.map((it)=>it.type).join(` `);
-      question.appendChild(rightAnswer);
+      const questionElement = this.element.querySelector(`.game__task`);
+      const rightAnswerElement = document.createElement(`span`);
+      rightAnswerElement.style.color = `red`;
+      rightAnswerElement.textContent = this.level.answers.map((it)=>it.type).join(` `);
+      questionElement.appendChild(rightAnswerElement);
     }
   }
 }
