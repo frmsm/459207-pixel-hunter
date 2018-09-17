@@ -4,7 +4,7 @@ import GameTwoView from "../views/levels/game-two-view";
 import GameThreeView from "../views/levels/game-three-view";
 import Router from "../router";
 
-const GameTypes = {
+const GameType = {
   'tinder-like': GameTwoView,
   'two-of-two': GameOneView,
   'one-of-three': GameThreeView
@@ -23,7 +23,7 @@ export default class LevelScreen {
   setGameType() {
     const level = this.model.getCurrentLevel();
     const type = level.type;
-    return new GameTypes[type](level, this.model.state, this.model.images);
+    return new GameType[type](level, this.model.state, this.model.images);
   }
 
   get element() {
