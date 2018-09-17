@@ -52,12 +52,12 @@ export default class StatsView extends AbstractView {
       </td>
       ${it.score.total === -1
     ? `<td class="result__total"></td>
-            <td class="result__total  result__total--final">fail</td>`
+       <td class="result__total  result__total--final">fail</td>`
     : `${StatsView.renderScoreType(it.score.answer, it.statistic.answer, `answer`)}
-        ${StatsView.renderScoreType(it.score.fast, it.statistic.fast, `fast`)}
-          ${StatsView.renderScoreType(it.score.lives, it.statistic.lives, `lives`)}
-          ${StatsView.renderScoreType(it.score.slow, it.statistic.slow, `slow`)}
-          <tr>
+       ${StatsView.renderScoreType(it.score.fast, it.statistic.fast, `fast`)}
+       ${StatsView.renderScoreType(it.score.lives, it.statistic.lives, `lives`)}
+       ${StatsView.renderScoreType(it.score.slow, it.statistic.slow, `slow`)}
+       <tr>
         <td colspan="5" class="result__total  result__total--final">${it.score.total}</td>
       </tr>`}
     </tr>`;
